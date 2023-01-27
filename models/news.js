@@ -6,11 +6,15 @@ const newsSchema = Schema(
       type: String,
       require: true,
     },
-    dateOfPublication: {
-      type: Date,
-      default: Date.now,
+    url: {
+      type: String,
+      require: true,
     },
-    content: {
+    description: {
+      type: String,
+      require: true,
+    },
+    date: {
       type: String,
       require: true,
     },
