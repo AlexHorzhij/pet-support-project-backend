@@ -6,33 +6,44 @@ const serviceSchema = Schema(
       type: String,
       required: [true, 'Name is required'],
     },
-    logoURL: {
+    url: {
       type: String,
       required: true,
     },
-    workingDays: {
+    addressUrl: {
       type: String,
-      required: true,
+      required: false,
     },
-    WorkingTimeStart: {
-      type: String,
-      required: true,
-    },
-    WorkingTimeEnd: {
+    imageUrl: {
       type: String,
       required: true,
     },
     address: {
       type: String,
-      required: true,
+      required: false,
     },
+    workDays: [
+      {
+        isOpen: {
+          type: Schema.Types.Boolean,
+        },
+        from: {
+          required: false,
+          type: Schema.Types.String,
+        },
+        to: {
+          required: false,
+          type: Schema.Types.String,
+        },
+      },
+    ],
     phone: {
       type: String,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   { versionKey: false, timestaps: true }

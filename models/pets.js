@@ -6,21 +6,21 @@ const petSchema = Schema(
       type: String,
       required: [true, 'Name is required'],
     },
-    dateOfBirth: {
+    date: {
       type: Date,
-      default: null,
+      required: false,
     },
     breed: {
       type: String,
-      default: null,
+      required: false,
     },
     avatarURL: {
       type: String,
       required: true,
     },
-    comment: {
+    description: {
       type: String,
-      default: null,
+      required: false,
     },
     owner: {
       type: Schema.Types.ObjectId,

@@ -3,6 +3,7 @@ const Pet = require('./pets');
 const News = require('./news');
 const Notice = require('./notice');
 const Service = require('./services');
+const FavotiteNotice = require('./favoriteNotice');
 
 module.exports = {
   Pet,
@@ -10,4 +11,5 @@ module.exports = {
   News,
   Notice,
   Service,
+  FavotiteNotice,
 };

@@ -15,13 +15,13 @@ const noticeSchema = Schema(
       type: String,
       required: [true, 'Name is required'],
     },
-    dateOfBirth: {
-      type: Date,
-      default: null,
+    birthdate: {
+      type: String,
+      require: false,
     },
     breed: {
       type: String,
-      default: null,
+      require: false,
     },
     sex: {
       type: String,
@@ -40,9 +40,9 @@ const noticeSchema = Schema(
       type: String,
       required: true,
     },
-    time: {
+    comments: {
       type: String,
-      default: null,
+      require: true,
     },
     owner: {
       type: Schema.Types.ObjectId,
