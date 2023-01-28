@@ -12,6 +12,22 @@
     {
       "name": "Auth",
       "description": "Authorization endpoints"
+    },
+    {
+      "name": "Users",
+      "description": "Users endpoints"
+    },
+    {
+      "name": "Notice",
+      "description": "Notice endpoints"
+    },
+    {
+      "name": "Services",
+      "description": "Services endpoints"
+    },
+    {
+      "name": "News",
+      "description": "News endpoints"
     }
   ],
 
@@ -27,7 +43,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Auth"
+                "$ref": "#/components/schemas/AuthSignup"
               }
             }
           }
@@ -49,9 +65,9 @@
 
   "components": {
     "schemas": {
-      "Auth": {
+      "AuthSignup": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": ["email", "password","name", "city", "phone"],
         "properties": {
           "email": {
             "type": "string",
@@ -62,6 +78,21 @@
             "type": "string",
             "description": "User's password",
             "example": "password123"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Taras Shevchenko"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Bucha, Kyiv"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+380671234567"
           }
         }
       }  
