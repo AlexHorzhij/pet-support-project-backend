@@ -1,0 +1,18 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.1",
+    "title": "Pet-support API",
+    "description": "Pet-support project"    
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "servers": [{ "url": "http://localhost:3000" }],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    }
+    
+  ]
+}
