@@ -24,10 +24,6 @@ const userSchema = Schema(
       type: String,
       required: [true, 'City is required'],
     },
-    avatarURL: {
-      type: String,
-      required: false,
-    },
     verify: {
       type: Boolean,
       default: false,
@@ -35,6 +31,10 @@ const userSchema = Schema(
     verificationToken: {
       type: String,
       required: [true, 'Verify token is required'],
+    },
+    token: {
+      type: String,
+      default: null,
     },
   },
   { versionKey: false, timestaps: true }
