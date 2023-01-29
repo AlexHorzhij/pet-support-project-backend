@@ -60,6 +60,98 @@
           }
         }
       }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "parameters": [],
+        "requestBody": {
+          "description": "Login's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User is logged in"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Email or password is wrong"    
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "parameters": [{
+          "name": "Authorization",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "204": {
+            "description": "The user is logged out"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      }
+    },
+    "/auth/update": {
+      "put": {
+        "tags": ["Auth"],
+        "summary": "User update",
+        "parameters": [{
+          "name": "Authorization",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthSignup"
+              }
+            }
+          }
+        },
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "The user not found"
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      }
     }
   },
 
@@ -72,11 +164,13 @@
           "email": {
             "type": "string",
             "description": "User's email",
+            "format": "email",
             "example": "user@mail.com"
           },
           "password": {
             "type": "string",
             "description": "User's password",
+            "format": "password",
             "example": "password123"
           },
           "name": {
@@ -93,6 +187,24 @@
             "type": "string",
             "description": "User's phone number",
             "example": "+380671234567"
+          }
+        }
+      },
+      "AuthLogin": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "format": "password",
+            "example": "password123"
           }
         }
       }  
