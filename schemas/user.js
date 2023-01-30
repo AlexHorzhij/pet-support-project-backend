@@ -24,6 +24,7 @@ const loginUserSchema = Joi.object({
 }).required();
 
 const updateUserSchema = Joi.object({
+  name: user.name.optional(),
   email: user.email.optional(),
   password: user.password.optional(),
   phone: user.phone.optional(),
