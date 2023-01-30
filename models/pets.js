@@ -7,17 +7,17 @@ const petSchema = Schema(
       required: [true, 'Name is required'],
     },
     date: {
-      type: Date,
+      type: String,
       required: false,
     },
     breed: {
       type: String,
       required: false,
     },
-    avatarURL: {
-      type: String,
-      required: true,
-    },
+   // avatarURL: {
+   //   type: String,
+   //   required: true,
+    //},
     description: {
       type: String,
       required: false,
