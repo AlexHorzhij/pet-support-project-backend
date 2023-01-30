@@ -152,6 +152,30 @@
           }
         }
       }
+    },
+    "/news": {
+      "get": {
+        "tags": ["News"],
+        "summary": "News about pets",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/services": {
+      "get": {
+        "tags": ["Services"],
+        "summary": "Services for pets",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
     }
   },
 
