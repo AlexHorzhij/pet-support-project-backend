@@ -6,7 +6,7 @@ const pet = {
     .optional()
     .pattern(
       new RegExp(
-        '^s*(3[01]|[12][0-9]|0?[1-9]).(1[012]|0?[1-9]).((?:19|20)d{2})s*$'
+        '(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)'
       )
     ),
   breed: Joi.string().optional().alphanum().min(2).max(16),

@@ -6,7 +6,7 @@ const user = {
   password: Joi.string().required().alphanum().min(7).max(32),
   phone: Joi.string()
     .required()
-    .pattern(new RegExp('/^([+]?d{1,2}[-s]?|)d{3}[-s]?d{3}[-s]?d{4}$/')),
+    .pattern(new RegExp('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')),
   city: Joi.string().required(),
 };
 
