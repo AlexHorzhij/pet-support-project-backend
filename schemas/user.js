@@ -2,9 +2,11 @@ const Joi = require('joi');
 
 const user = {
   name: Joi.string().required(),
-  email: Joi.string().required(),
-  password: Joi.string().required(),
-  phone: Joi.string().required(),
+  email: Joi.string().required().email(),
+  password: Joi.string().required().alphanum().min(7).max(32),
+  phone: Joi.string()
+    .required()
+    .pattern(new RegExp('/^([+]?d{1,2}[-s]?|)d{3}[-s]?d{3}[-s]?d{4}$/')),
   city: Joi.string().required(),
 };
 

@@ -6,6 +6,7 @@ const {
 } = require('./user');
 
 const { createPetSchema, updatePetSchema } = require('./pet');
+const { createNoticeSchema, updateNoticeSchema } = require('./notice');
 
 module.exports = {
   signupUserSchema,
@@ -14,4 +15,6 @@ module.exports = {
   verifyEmailSchema,
   createPetSchema,
   updatePetSchema,
+  createNoticeSchema,
+  updateNoticeSchema,
 };
