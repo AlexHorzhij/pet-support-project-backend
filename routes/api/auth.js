@@ -4,7 +4,7 @@ const { ctrlWrapper } = require('../../helpers');
 
 const { validateBody, authentificate } = require('../../middlewares');
 
-const { users: ctrl } = require('../../controllers');
+const { users: {signup, verify, resendVerifyEmail, login, updateUser, logout}} = require('../../controllers');
 
 const {
   signupUserSchema,
@@ -18,25 +18,25 @@ const router = express.Router();
 router.post(
   '/signup',
   validateBody(signupUserSchema),
-  ctrlWrapper(ctrl.signup)
+  ctrlWrapper(signup)
 );
 
-router.get('/verify/:verificationToken', ctrlWrapper(ctrl.verify));
+router.get('/verify/:verificationToken', ctrlWrapper(verify));
 router.post(
   '/verify',
   validateBody(verifyEmailSchema),
-  ctrlWrapper(ctrl.resendVerifyEmail)
+  ctrlWrapper(resendVerifyEmail)
 );
 
-router.post('/login', validateBody(loginUserSchema), ctrlWrapper(ctrl.login));
+router.post('/login', validateBody(loginUserSchema), ctrlWrapper(login));
 
 router.put(
   '/update',
   authentificate,
   validateBody(updateUserSchema),
-  ctrlWrapper(ctrl.updateUser)
+  ctrlWrapper(updateUser)
 );
 
-router.post('/logout', authentificate, ctrlWrapper(ctrl.logout));
+router.post('/logout', authentificate, ctrlWrapper(logout));
 
 module.exports = router;
