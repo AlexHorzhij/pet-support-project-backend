@@ -15,7 +15,7 @@ const deleteUserNotice = async (req, res) => {
   res.json({
     status: 'success',
     code: 200,
-    message: 'contact deleted',
+    message: 'notice deleted',
     data: {
       result,
     },

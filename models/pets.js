@@ -14,10 +14,10 @@ const petSchema = Schema(
       type: String,
       required: false,
     },
-   // avatarURL: {
-   //   type: String,
-   //   required: true,
-    //},
+    avatarURL: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: false,

@@ -6,13 +6,20 @@ const { validateBody, authentificate } = require('../../middlewares');
 
 const {
   user: { getUserPage, addPet, deletePet, updatePet },
+  notice: { getUserNotice, addUserNotice, deleteUserNotice, updateUserNotice },
 } = require('../../controllers');
 
-const { createPetSchema, updatePetSchema } = require('../../schemas');
+const {
+  createPetSchema,
+  updatePetSchema,
+  createNoticeSchema,
+  updateNoticeSchema,
+} = require('../../schemas');
 
 const router = express.Router();
 
 router.get('/', authentificate, ctrlWrapper(getUserPage));
+router.get('/notice', authentificate, ctrlWrapper(getUserNotice));
 
 router.post(
   '/',
@@ -21,8 +28,28 @@ router.post(
   ctrlWrapper(addPet)
 );
 
-router.delete('/:petId', authentificate, ctrlWrapper(deletePet));
+router.post(
+  '/notice',
+  authentificate,
+  validateBody(createNoticeSchema),
+  ctrlWrapper(addUserNotice)
+);
 
-router.put('/:petId', authentificate, validateBody(updatePetSchema), ctrlWrapper(updatePet));
+router.delete('/:id', authentificate, ctrlWrapper(deletePet));
+router.delete('/notice/:id', authentificate, ctrlWrapper(deleteUserNotice));
+
+router.put(
+  '/:id',
+  authentificate,
+  validateBody(updatePetSchema),
+  ctrlWrapper(updatePet)
+);
+
+router.patch(
+  '/notice/:id',
+  authentificate,
+  validateBody(updateNoticeSchema),
+  ctrlWrapper(updateUserNotice)
+);
 
 module.exports = router;

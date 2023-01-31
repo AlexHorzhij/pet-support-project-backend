@@ -13,7 +13,7 @@ const noticeSchema = Schema(
     },
     name: {
       type: String,
-      required: [true, 'Name is required'],
+      require: false,
     },
     birthdate: {
       type: String,
@@ -33,10 +33,10 @@ const noticeSchema = Schema(
       require: true,
     },
     price: {
-      type: String,
+      type: Number,
       require: true,
     },
-    avatarURL: {
+    avatarUrl: {
       type: String,
       required: true,
     },
