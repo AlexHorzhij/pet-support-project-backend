@@ -18,8 +18,8 @@
       "description": "Users endpoints"
     },
     {
-      "name": "Notice",
-      "description": "Notice endpoints"
+      "name": "Notices",
+      "description": "Notices endpoints"
     },
     {
       "name": "Services",
@@ -85,7 +85,7 @@
             "description": "Bad Request"
           },
           "401": {
-            "description": "Email or password is wrong"    
+            "description": "Email is wrong. Password is wrong. Email is not verify. "    
           }
         }
       }
@@ -96,6 +96,7 @@
         "summary": "User logout",
         "parameters": [{
           "name": "Authorization",
+          "in": "header",
           "description": "The token issued to the current user",
           "required": true,
           "schema": {
@@ -116,12 +117,65 @@
         }
       }
     },
+    "/auth/verify": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User verification",
+        "parameters": [],
+        "requestBody": {
+          "description": "Email",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthVerify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification successful"
+          },
+          "400": {
+            "description": "Missing required field email"
+          },
+          "404": {
+            "description": "User not found"
+          }        
+        }
+      }
+    },
+    "/auth/verify/{verificationToken}": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Repeat verify email",
+        "parameters": [{
+          "name": "Verification token",
+          "in": "path",
+          "description": "The token for verification",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Verification successful"
+          },
+          "400": {
+            "description": "Verification has already been passed"
+          }        
+        }
+      }
+    },
     "/auth/update": {
       "put": {
         "tags": ["Auth"],
         "summary": "User update",
         "parameters": [{
           "name": "Authorization",
+          "in": "header",
           "description": "The token issued to the current user",
           "required": true,
           "schema": {
@@ -129,7 +183,7 @@
           }
         }],
         "requestBody": {
-          "description": "Registration's object",
+          "description": "Update's object",
           "required": true,
           "content": {
             "application/json": {
@@ -145,7 +199,7 @@
             "description": "Successful operation"
           },
           "404": {
-            "description": "The user not found"
+            "description": "User not found"
           },
           "500": {
             "description": "Server error"    
@@ -161,6 +215,9 @@
         "responses": {
           "200": {
             "description": "Successful operation"
+          },
+          "500": {
+            "description": "Server error"
           }
         }
       }
@@ -173,6 +230,47 @@
         "responses": {
           "200": {
             "description": "Successful operation"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/notice": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Notices of pets",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/notice/{id}": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Notices of pets",
+        "parameters": [{
+          "name": "NoticeId",
+          "in": "path",
+          "description": "Notice Id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "There is no such notice in collection."
           }
         }
       }
@@ -231,8 +329,21 @@
             "example": "password123"
           }
         }
-      }  
+      },
+      "AuthVerify": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@mail.com"
+          }
+        }
+      }
     },
+
     "securitySchemes": {
       "Bearer": {
         "type": "http",
