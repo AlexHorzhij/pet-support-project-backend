@@ -2,18 +2,27 @@ const { Notice } = require('../../models');
 const { NotFound } = require('http-errors');
 
 const getUserNotice = async (req, res) => {
-  const { page = 1, limit = 20 } = req.query;
+  const { page = 1, limit = 20, status, search } = req.query;
   const skip = (page - 1) * limit;
-  const noticeId = req.params.id;
   const userId = req.user._id;
-  const result = await Notice.find({ owner: userId, _id: noticeId }, '', {
+
+  let filters = {
+    owner: userId,
+  };
+
+  if (status && NOTICE_STATUS.includes(status.toLowerCase())) {
+    filters = { ...filters, status: status.toLowerCase() };
+  }
+
+  if (search) {
+    filters = { ...filters, title: new RegExp(`${search}`) };
+  }
+
+  const result = await Notice.find(filters, '', {
     skip,
     limit: Number(limit),
   });
 
-  if (!result) {
-    throw new NotFound('Not found');
-  }
   res.json({
     status: 'success',
     code: 200,
