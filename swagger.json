@@ -14,11 +14,11 @@
       "description": "Authorization endpoints"
     },
     {
-      "name": "Users",
+      "name": "User",
       "description": "Users endpoints"
     },
     {
-      "name": "Notices",
+      "name": "Notice",
       "description": "Notices endpoints"
     },
     {
@@ -239,7 +239,7 @@
     },
     "/notice": {
       "get": {
-        "tags": ["Notices"],
+        "tags": ["Notice"],
         "summary": "Notices of pets",
         "parameters": [],
         "responses": {
@@ -254,7 +254,7 @@
     },
     "/notice/{id}": {
       "get": {
-        "tags": ["Notices"],
+        "tags": ["Notice"],
         "summary": "Notices of pets",
         "parameters": [{
           "name": "NoticeId",
@@ -262,7 +262,7 @@
           "description": "Notice Id",
           "required": true,
           "schema": {
-            "type": "string"
+            "type": "integer"
           }
         }],
         "responses": {
@@ -274,7 +274,314 @@
           }
         }
       }
+    },
+    "/user": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Information about current user and current user's pets",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "summary": "Add pet of current user",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "description": "Pet information's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAddPet"
+              }
+            }
+          }
+        },
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "400": {
+            "description": "Error"    
+          }
+        }
+      }
+    },
+    "/user/notice": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Information about current user notices",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "summary": "Add a new notice of current user",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "description": "Notice information's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAddNotice"
+              }
+            }
+          }
+        },
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "400": {
+            "description": "Error"    
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Update information about current user's pet",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+      {
+          "name": "Id",
+          "in": "path",
+          "description": "Pet's Id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+        "requestBody": {
+          "description": "Pet information's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAddPet"
+              }
+            }
+          }
+        },
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "400": {
+            "description": "Error"    
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Delete current user's pet",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+      {
+          "name": "Id",
+          "in": "path",
+          "description": "Pet's Id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Pet deleted"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      }
+      
+    },
+    "/user/notice/{id}": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Update information about current user's notice",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+      {
+          "name": "Id",
+          "in": "path",
+          "description": "Notice's Id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+        "requestBody": {
+          "description": "Notice information's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAddNotice"
+              }
+            }
+          }
+        },
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "400": {
+            "description": "Error"    
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Delete current user's notice",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+      {
+          "name": "Id",
+          "in": "path",
+          "description": "Notice's Id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Notice deleted"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      }
+      
     }
+
   },
 
   "components": {
@@ -341,7 +648,95 @@
             "example": "user@mail.com"
           }
         }
+      },
+      "UserAddPet": {
+        "type": "object",
+        "required": ["name", "avatarUrl", "comments"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Rey"
+          },
+          "date": {
+            "type": "string",
+            "description": "Pat's birthdate",
+            "example": "31.12.2017"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "shepherd"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "description": "Pet's avatar",
+            "example": "Here will be a pet photo"
+          },
+          "comments": {
+            "type": "string",
+            "description": "User's comments about pet",
+            "example": "Very beautiful, smart and strong. Good for long walks"
+          }
+        }
+      },
+      "UserAddNotice": {
+        "type": "object",
+        "required": ["status", "title", "avatarUrl", "sex"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Notice's status",
+            "example": "sell"
+          },
+          "title": {
+            "type": "string",
+            "description": "Notice's title",
+            "example": "A german shepherd"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Rey"
+          },
+          "birthdate": {
+            "type": "string",
+            "description": "Pat's birthdate",
+            "example": "31.12.2017"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "shepherd"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "description": "Pet's avatar",
+            "example": "Here will be a pet photo"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Pet's sex",
+            "example": "female"
+          },
+          "location": {
+            "type": "string",
+            "description": "Pet's location",
+            "example": "Bucha, Kyiv"
+          },
+          "price": {
+            "type": "string",
+            "description": "Pet's price",
+            "example": "500$"
+          },
+          "comments": {
+            "type": "string",
+            "description": "User's comments about pet",
+            "example": "Very beautiful, smart and strong. Good for long walks"
+          }
+        }
       }
+
     },
 
     "securitySchemes": {
