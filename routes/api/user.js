@@ -6,7 +6,15 @@ const { validateBody, authentificate } = require('../../middlewares');
 
 const {
   user: { getUserPage, addPet, deletePet, updatePet },
-  notice: { getUserNotice, addUserNotice, deleteUserNotice, updateUserNotice },
+  notice: {
+    getUserNotice,
+    addUserNotice,
+    deleteUserNotice,
+    updateUserNotice,
+    getFavoriteNotice,
+    deleteFavoriteNotice,
+    addFavoriteNotice,
+  },
 } = require('../../controllers');
 
 const {
@@ -20,6 +28,7 @@ const router = express.Router();
 
 router.get('/', authentificate, ctrlWrapper(getUserPage));
 router.get('/notice', authentificate, ctrlWrapper(getUserNotice));
+router.get('/favoritenotice', authentificate, ctrlWrapper(getFavoriteNotice));
 
 router.post(
   '/',
@@ -35,8 +44,19 @@ router.post(
   ctrlWrapper(addUserNotice)
 );
 
+router.post(
+  '/notice/:id/favorite',
+  authentificate,
+  ctrlWrapper(addFavoriteNotice)
+);
+
 router.delete('/:id', authentificate, ctrlWrapper(deletePet));
 router.delete('/notice/:id', authentificate, ctrlWrapper(deleteUserNotice));
+router.delete(
+  '/notice/:id/favorite',
+  authentificate,
+  ctrlWrapper(deleteUserNotice)
+);
 
 router.put(
   '/:id',
