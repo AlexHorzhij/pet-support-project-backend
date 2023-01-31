@@ -20,6 +20,10 @@ const userSchema = Schema(
       type: String,
       required: [true, 'Phone number is required'],
     },
+    avatarUrl: {
+      type: String,
+      required: true,
+    },
     city: {
       type: String,
       required: [true, 'City is required'],
