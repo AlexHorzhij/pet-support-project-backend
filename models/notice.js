@@ -1,10 +1,11 @@
 const { Schema, model } = require('mongoose');
+const { NOTICE_STATUS } = require('../consts');
 
 const noticeSchema = Schema(
   {
     status: {
       type: String,
-      enum: ['lost/found', 'in good hands', 'sell'],
+      enum: NOTICE_STATUS,
       require: true,
     },
     title: {
@@ -47,6 +48,10 @@ const noticeSchema = Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'users',
+      require: true,
+    },
+    create_at: {
+      type: Date,
       require: true,
     },
   },

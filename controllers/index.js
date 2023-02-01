@@ -1,13 +1,15 @@
-const users = require('./auth');
+const auth = require('./auth');
 const news = require('./news');
 const notice = require('./notice');
 const services = require('./services');
-const user = require('./user')
+const user = require('./user');
+const pets = require('./pets');
 
 module.exports = {
-  users,
+  auth,
   news,
   notice,
   services,
   user,
+  pets,
 };

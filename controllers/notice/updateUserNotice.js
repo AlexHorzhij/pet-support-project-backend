@@ -13,7 +13,7 @@ const updateUserNotice = async (req, res) => {
   );
 
   if (!result) {
-    throw new NotFound('Not found');
+    throw new NotFound('Notice not found');
   }
 
   res.json({
