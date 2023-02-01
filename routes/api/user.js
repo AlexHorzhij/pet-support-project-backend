@@ -5,7 +5,8 @@ const { ctrlWrapper } = require('../../helpers');
 const { validateBody, authentificate } = require('../../middlewares');
 
 const {
-  user: { getUserPage, addPet, deletePet, updatePet },
+  user: { getUserPage, updateUser },
+  pets: { addPet, deletePet, updatePet },
   notice: {
     getUserNotice,
     addUserNotice,
@@ -18,6 +19,7 @@ const {
 } = require('../../controllers');
 
 const {
+  updateUserSchema,
   createPetSchema,
   updatePetSchema,
   createNoticeSchema,
@@ -28,10 +30,10 @@ const router = express.Router();
 
 router.get('/', authentificate, ctrlWrapper(getUserPage));
 router.get('/notice', authentificate, ctrlWrapper(getUserNotice));
-router.get('/favoritenotice', authentificate, ctrlWrapper(getFavoriteNotice));
+router.get('/notice/favorite', authentificate, ctrlWrapper(getFavoriteNotice));
 
 router.post(
-  '/',
+  '/pets',
   authentificate,
   validateBody(createPetSchema),
   ctrlWrapper(addPet)
@@ -43,33 +45,38 @@ router.post(
   validateBody(createNoticeSchema),
   ctrlWrapper(addUserNotice)
 );
-
 router.post(
   '/notice/:id/favorite',
   authentificate,
   ctrlWrapper(addFavoriteNotice)
 );
 
-router.delete('/:id', authentificate, ctrlWrapper(deletePet));
-router.delete('/notice/:id', authentificate, ctrlWrapper(deleteUserNotice));
-router.delete(
-  '/notice/:id/favorite',
+router.patch(
+  '/',
   authentificate,
-  ctrlWrapper(deleteUserNotice)
+  validateBody(updateUserSchema),
+  ctrlWrapper(updateUser)
 );
 
-router.put(
-  '/:id',
+router.patch(
+  '/pets/:id',
   authentificate,
   validateBody(updatePetSchema),
   ctrlWrapper(updatePet)
 );
-
 router.patch(
   '/notice/:id',
   authentificate,
   validateBody(updateNoticeSchema),
   ctrlWrapper(updateUserNotice)
+);
+
+router.delete('/pets/:id', authentificate, ctrlWrapper(deletePet));
+router.delete('/notice/:id', authentificate, ctrlWrapper(deleteUserNotice));
+router.delete(
+  '/notice/:id/favorite',
+  authentificate,
+  ctrlWrapper(deleteFavoriteNotice)
 );
 
 module.exports = router;
