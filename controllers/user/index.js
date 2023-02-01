@@ -1,11 +1,7 @@
 const getUserPage = require('./getUserPage');
-const addPet = require('./addPet');
-const deletePet = require('./deletePet');
-const updatePet = require ('./updatePet');
+const updateUser = require('../user/updateUser');
 
 module.exports = {
   getUserPage,
-  addPet,
-  deletePet,
-  updatePet
+  updateUser,
 };

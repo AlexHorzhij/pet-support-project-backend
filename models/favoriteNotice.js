@@ -4,12 +4,12 @@ const favoriteNoticeSchema = Schema(
   {
     user: {
       type: Schema.Types.ObjectId,
-      ref: 'users',
+      ref: 'user',
       require: true,
     },
     notice: {
       type: Schema.Types.ObjectId,
-      ref: 'notices',
+      ref: 'notice',
       require: true,
     },
   },
