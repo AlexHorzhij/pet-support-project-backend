@@ -280,7 +280,7 @@
         }
       }
     },
-    "/user/notice": {
+    "/user/notices": {
       "get": {
         "tags": ["User"],
         "summary": "Get information about current user's notices",
@@ -346,7 +346,7 @@
         }
       }
     },
-    "/user/notice/{id}": {
+    "/user/notices/{id}": {
       "patch": {
         "tags": ["User"],
         "summary": "Update information about current user's notice",
@@ -432,7 +432,7 @@
         }
       }
     },
-    "/user/notice/{id}/favorite":{
+    "/user/notices/{id}/favorite":{
       "post": {
         "tags": ["User"],
         "summary": "Add current user's notice to the favorite",
@@ -510,7 +510,7 @@
         }
       }
     },
-    "/user/notice/favorite":{
+    "/user/notices/favorite":{
       "get": {
         "tags": ["User"],
         "summary": "Get information about current user's favorite notices",
@@ -850,7 +850,7 @@
             "example": "Bucha, Kyiv"
           },
           "price": {
-            "type": "string",
+            "type": "number",
             "description": "Pet's price",
             "example": "500$"
           },
