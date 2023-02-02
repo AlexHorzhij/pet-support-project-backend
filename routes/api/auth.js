@@ -2,7 +2,7 @@ const express = require('express');
 
 const { ctrlWrapper } = require('../../helpers');
 
-const { validateBody, authentificate } = require('../../middlewares');
+const { validateBody, authentificate, upload } = require('../../middlewares');
 
 const {
   auth: { signup, verify, resendVerifyEmail, login, logout },
@@ -16,7 +16,12 @@ const {
 
 const router = express.Router();
 
-router.post('/signup', validateBody(signupUserSchema), ctrlWrapper(signup));
+router.post(
+  '/signup',
+  validateBody(signupUserSchema),
+  upload.single('avatarUrl'),
+  ctrlWrapper(signup)
+);
 
 router.get('/verify/:verificationToken', ctrlWrapper(verify));
 router.post(

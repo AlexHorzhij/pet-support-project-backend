@@ -2,7 +2,7 @@ const express = require('express');
 
 const { ctrlWrapper } = require('../../helpers');
 
-const { validateBody, authentificate } = require('../../middlewares');
+const { validateBody, authentificate, upload } = require('../../middlewares');
 
 const {
   user: { getUserPage, updateUser },
@@ -36,6 +36,7 @@ router.post(
   '/pets',
   authentificate,
   validateBody(createPetSchema),
+  upload.single('avatarUrl'),
   ctrlWrapper(addPet)
 );
 
@@ -55,6 +56,7 @@ router.patch(
   '/',
   authentificate,
   validateBody(updateUserSchema),
+  upload.single('avatarUrl'),
   ctrlWrapper(updateUser)
 );
 
@@ -62,6 +64,7 @@ router.patch(
   '/pets/:id',
   authentificate,
   validateBody(updatePetSchema),
+  upload.single('avatarUrl'),
   ctrlWrapper(updatePet)
 );
 router.patch(
