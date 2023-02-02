@@ -184,7 +184,7 @@
         }
       }
     },
-    "/service": {
+    "/services": {
       "get": {
         "tags": ["Services"],
         "summary": "Services for pets",
@@ -199,7 +199,7 @@
         }
       }
     },
-    "/notices": {
+    "/notice": {
       "get": {
         "tags": ["Notice"],
         "summary": "Get all notices",
