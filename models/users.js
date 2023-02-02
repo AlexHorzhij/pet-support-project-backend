@@ -24,6 +24,10 @@ const userSchema = Schema(
       type: String,
       default: false,
     },
+    birthdate: {
+      type: String,
+      require: false,
+    },
     city: {
       type: String,
       required: [true, 'City is required'],
