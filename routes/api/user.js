@@ -29,8 +29,8 @@ const {
 const router = express.Router();
 
 router.get('/', authentificate, ctrlWrapper(getUserPage));
-router.get('/notice', authentificate, ctrlWrapper(getUserNotice));
-router.get('/notice/favorite', authentificate, ctrlWrapper(getFavoriteNotice));
+router.get('/notices', authentificate, ctrlWrapper(getUserNotice));
+router.get('/notices/favorite', authentificate, ctrlWrapper(getFavoriteNotice));
 
 router.post(
   '/pets',
@@ -41,13 +41,13 @@ router.post(
 );
 
 router.post(
-  '/notice',
+  '/notices',
   authentificate,
   validateBody(createNoticeSchema),
   ctrlWrapper(addUserNotice)
 );
 router.post(
-  '/notice/:id/favorite',
+  '/notices/:id/favorite',
   authentificate,
   ctrlWrapper(addFavoriteNotice)
 );
@@ -68,16 +68,16 @@ router.patch(
   ctrlWrapper(updatePet)
 );
 router.patch(
-  '/notice/:id',
+  '/notices/:id',
   authentificate,
   validateBody(updateNoticeSchema),
   ctrlWrapper(updateUserNotice)
 );
 
 router.delete('/pets/:id', authentificate, ctrlWrapper(deletePet));
-router.delete('/notice/:id', authentificate, ctrlWrapper(deleteUserNotice));
+router.delete('/notices/:id', authentificate, ctrlWrapper(deleteUserNotice));
 router.delete(
-  '/notice/:id/favorite',
+  '/notices/:id/favorite',
   authentificate,
   ctrlWrapper(deleteFavoriteNotice)
 );

@@ -22,7 +22,11 @@ const userSchema = Schema(
     },
     avatarUrl: {
       type: String,
-      required: true,
+      default: false,
+    },
+    birthdate: {
+      type: String,
+      require: false,
     },
     city: {
       type: String,

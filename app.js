@@ -25,7 +25,7 @@ app.use(express.static('public'));
 app.use('/api/auth', authRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/services', servicesRouter);
-app.use('/api/notice', noticeRouter);
+app.use('/api/notices', noticeRouter);
 app.use('/api/user', userRouter);
 
 app.use((req, res) => {
