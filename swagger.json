@@ -199,7 +199,7 @@
         }
       }
     },
-    "/notice": {
+    "/notices": {
       "get": {
         "tags": ["Notice"],
         "summary": "Get all notices",
