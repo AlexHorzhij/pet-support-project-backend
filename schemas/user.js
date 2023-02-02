@@ -4,7 +4,7 @@ const user = {
   name: Joi.string().required(),
   email: Joi.string().required().email(),
   password: Joi.string().required().alphanum().min(7).max(32),
-  avatarUrl: Joi.string().required(),
+  avatarUrl: Joi.string(),//.required(),
   birthdate: Joi.string()
     .optional()
     .pattern(new RegExp('(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).(19|20)')),

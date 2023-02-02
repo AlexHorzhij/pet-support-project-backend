@@ -14,7 +14,7 @@ const petSchema = Schema(
       type: String,
       required: false,
     },
-    avatarURL: {
+    avatarUrl: {
       type: String,
       required: true,
     },
