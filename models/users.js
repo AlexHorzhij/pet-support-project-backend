@@ -22,7 +22,7 @@ const userSchema = Schema(
     },
     avatarUrl: {
       type: String,
-      required: true,
+      default: false,
     },
     city: {
       type: String,
