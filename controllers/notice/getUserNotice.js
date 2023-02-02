@@ -1,18 +1,28 @@
-const { NOTICE_STATUS } = require("../../consts");
+const { NOTICE_STATUS } = require('../../consts');
 
 const { Notice } = require('../../models');
 
 const getUserNotice = async (req, res) => {
-  const { page = 1, limit = 10, status = 'Sell', search = 'Good', myNotice, favorite } = req.query;
+  const {
+    page = 1,
+    limit = 10,
+    status,
+    search,
+    myNotice,
+    favorite,
+  } = req.query;
   const skip = (page - 1) * limit;
   const userId = req.user._id;
 
   let filters = {
-    $match: { },
+    $match: {},
   };
 
   if (myNotice) {
-    filters.$match = { ...filters.$match, $expr : { $eq: [ '$owner' , { $toObjectId: userId.toString() } ] } };
+    filters.$match = {
+      ...filters.$match,
+      $expr: { $eq: ['$owner', { $toObjectId: userId.toString() }] },
+    };
   }
 
   if (status && NOTICE_STATUS.includes(status.toLowerCase())) {
@@ -27,39 +37,41 @@ const getUserNotice = async (req, res) => {
     filters.$match = { ...filters.$match, favorite: true };
   }
 
-  let pipelines = [[
-    {
-      $lookup: {
-        from: "favoritenotices",
-        localField: "_id",
-        foreignField: "notice",
-        as: "favoriteNotice",
+  let pipelines = [
+    [
+      {
+        $lookup: {
+          from: 'favoritenotices',
+          localField: '_id',
+          foreignField: 'notice',
+          as: 'favoriteNotice',
+        },
       },
-    },
-    {
-      $addFields: {
-        "favorite": {
-          $cond: [
-            {
-              $setIsSubset: [[userId], "$favoriteNotice.user"]
-            },
-            true,
-            false
-          ]
-        }
-      }
-    },
-    {
-      $unset: "favoriteNotice"
-    },
-    filters,
-    {
-      $skip: skip,
-    },
-    {
-      $limit: limit,
-    }
-  ]]
+      {
+        $addFields: {
+          favorite: {
+            $cond: [
+              {
+                $setIsSubset: [[userId], '$favoriteNotice.user'],
+              },
+              true,
+              false,
+            ],
+          },
+        },
+      },
+      {
+        $unset: 'favoriteNotice',
+      },
+      filters,
+      {
+        $skip: skip,
+      },
+      {
+        $limit: limit,
+      },
+    ],
+  ];
 
   const result = await Notice.aggregate(pipelines);
 
