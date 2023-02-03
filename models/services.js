@@ -13,6 +13,7 @@ const serviceSchema = Schema(
     addressUrl: {
       type: String,
       required: false,
+      default: null,
     },
     imageUrl: {
       type: String,
@@ -21,6 +22,7 @@ const serviceSchema = Schema(
     address: {
       type: String,
       required: false,
+      default: null,
     },
     workDays: [
       {
@@ -30,20 +32,24 @@ const serviceSchema = Schema(
         from: {
           required: false,
           type: Schema.Types.String,
+          default: null,
         },
         to: {
           required: false,
           type: Schema.Types.String,
+          default: null,
         },
       },
     ],
     phone: {
       type: String,
       required: false,
+      default: null,
     },
     email: {
       type: String,
       required: false,
+      default: null,
     },
   },
   { versionKey: false, timestaps: true }

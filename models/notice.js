@@ -3,7 +3,7 @@ const { NOTICE_STATUS } = require('../consts');
 
 const noticeSchema = Schema(
   {
-    status: {
+    category: {
       type: String,
       enum: NOTICE_STATUS,
       require: true,
@@ -15,14 +15,17 @@ const noticeSchema = Schema(
     name: {
       type: String,
       require: false,
+      default: null,
     },
     birthdate: {
       type: String,
       require: false,
+      default: null,
     },
     breed: {
       type: String,
       require: false,
+      default: null,
     },
     sex: {
       type: String,

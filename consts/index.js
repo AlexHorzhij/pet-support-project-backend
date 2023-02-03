@@ -1,5 +1,5 @@
-const NOTICE_STATUS = ['lost/found', 'in good hands', 'sell'];
+const NOTICE_CATEGORY = ['lost-found', 'for-free', 'sell'];
 
 module.exports = {
-  NOTICE_STATUS,
+  NOTICE_CATEGORY,
 };
