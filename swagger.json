@@ -22,8 +22,8 @@
       "description": "Notices endpoints"
     },
     {
-      "name": "Services",
-      "description": "Services endpoints"
+      "name": "Friends",
+      "description": "Friends endpoints"
     },
     {
       "name": "News",
@@ -184,9 +184,9 @@
         }
       }
     },
-    "/services": {
+    "/friends": {
       "get": {
-        "tags": ["Services"],
+        "tags": ["Friends"],
         "summary": "Services for pets",
         "parameters": [],
         "responses": {
@@ -203,7 +203,17 @@
       "get": {
         "tags": ["Notice"],
         "summary": "Get all notices",
-        "parameters": [],
+        "parameters": [
+          {
+          "name": "Status for notice",
+          "in": "query",
+          "description": "'sell', 'lost/found', 'in good hands'",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation"
@@ -292,7 +302,17 @@
           "schema": {
             "type": "string"
           }
-        }],
+        },
+        {
+          "name": "Status for notice",
+          "in": "query",
+          "description": "'sell', 'lost/found', 'in good hands'",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -776,7 +796,6 @@
       },
       "UserPostPet": {
         "type": "object",
-        "required": ["name", "avatarUrl", "comments"],
         "properties": {
           "name": {
             "type": "string",
@@ -798,7 +817,7 @@
             "description": "Pet's avatar",
             "example": "Here will be a pet photo"
           },
-          "comments": {
+          "description": {
             "type": "string",
             "description": "User's comments about pet",
             "example": "Very beautiful, smart and strong. Good for long walks"
@@ -854,7 +873,7 @@
             "description": "Pet's price",
             "example": "500$"
           },
-          "comments": {
+          "description": {
             "type": "string",
             "description": "User's comments about pet",
             "example": "Very beautiful, smart and strong. Good for long walks"
