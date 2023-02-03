@@ -28,13 +28,13 @@ const updateUser = async (req, res) => {
     throw new NotFound('Not found');
   }
   res.status(201).json({
-    name: newUser.name,
-    email: newUser.email,
-    password: newUser.password,
-    avatarUrl: newUser.avatarUrl,
-    birthdate: newUser.birthdate,
-    phone: newUser.phone,
-    city: newUser.city,
+    name: result.name,
+    email: result.email,
+    password: result.password,
+    avatarUrl: result.avatarUrl,
+    birthdate: result.birthdate,
+    phone: result.phone,
+    city: result.city,
   });
 };
 

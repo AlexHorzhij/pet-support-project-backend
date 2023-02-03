@@ -2,8 +2,8 @@ const { Pet } = require('../../models');
 const { NotFound } = require('http-errors');
 
 const deletePet = async (req, res) => {
-  const { petId } = req.params;
-  const result = await Pet.findByIdAndRemove(petId);
+  const { id } = req.params;
+  const result = await Pet.findByIdAndRemove(id);
 
   if (!result) {
     throw new NotFound('Not found');

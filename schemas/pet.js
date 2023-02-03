@@ -6,7 +6,7 @@ const pet = {
     .optional()
     .pattern(new RegExp('(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).(19|20)')),
   breed: Joi.string().optional().alphanum().min(2).max(16),
-  avatarUrl: Joi.string(),//.required(),
+  avatarUrl: Joi.string().optional(),
   description: Joi.string().required().min(8).max(120),
 };
 
