@@ -24,7 +24,6 @@ const petSchema = Schema(
     description: {
       type: String,
       required: false,
-      default: null,
     },
     owner: {
       type: Schema.Types.ObjectId,
