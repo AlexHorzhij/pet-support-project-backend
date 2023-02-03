@@ -13,6 +13,7 @@ const friendsSchema = Schema(
     addressUrl: {
       type: String,
       required: false,
+      default: null,
     },
     imageUrl: {
       type: String,
@@ -21,6 +22,7 @@ const friendsSchema = Schema(
     address: {
       type: String,
       required: false,
+      default: null,
     },
     workDays: [
       {
@@ -30,10 +32,12 @@ const friendsSchema = Schema(
         from: {
           required: false,
           type: Schema.Types.String,
+          default: null,
         },
         to: {
           required: false,
           type: Schema.Types.String,
+          default: null,
         },
       },
     ],

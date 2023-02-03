@@ -9,10 +9,12 @@ const petSchema = Schema(
     date: {
       type: String,
       required: false,
+      default: null,
     },
     breed: {
       type: String,
       required: false,
+      default: null,
     },
     avatarUrl: {
       type: String,
@@ -21,6 +23,7 @@ const petSchema = Schema(
     description: {
       type: String,
       required: false,
+      default: null,
     },
     owner: {
       type: Schema.Types.ObjectId,
