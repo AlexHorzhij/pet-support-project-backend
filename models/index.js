@@ -2,7 +2,7 @@ const User = require('./users');
 const Pet = require('./pets');
 const News = require('./news');
 const Notice = require('./notice');
-const Service = require('./services');
+const Friends = require('./friends');
 const FavotiteNotice = require('./favoriteNotice');
 
 module.exports = {
@@ -10,6 +10,6 @@ module.exports = {
   User,
   News,
   Notice,
-  Service,
+  Friends,
   FavotiteNotice,
 };

@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const serviceSchema = Schema(
+const friendsSchema = Schema(
   {
     name: {
       type: String,
@@ -49,6 +49,6 @@ const serviceSchema = Schema(
   { versionKey: false, timestaps: true }
 );
 
-const Service = model('service', serviceSchema);
+const Friends = model('service', friendsSchema);
 
-module.exports = Service;
+module.exports = Friends;

@@ -4,9 +4,9 @@ const router = express.Router();
 const { ctrlWrapper } = require('../../helpers');
 
 const {
-  services: { getServices },
+  friends: { getFriends },
 } = require('../../controllers');
 
-router.get('/', ctrlWrapper(getServices));
+router.get('/', ctrlWrapper(getFriends));
 
 module.exports = router;
