@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const authRouter = require('./routes/api/auth');
 const newsRouter = require('./routes/api/news');
-const servicesRouter = require('./routes/api/services');
+const friendsRouter = require('./routes/api/friends');
 const noticeRouter = require('./routes/api/notices');
 const userRouter = require('./routes/api/user');
 
@@ -24,7 +24,7 @@ app.use(express.static('public'));
 
 app.use('/api/auth', authRouter);
 app.use('/api/news', newsRouter);
-app.use('/api/services', servicesRouter);
+app.use('/api/friends', friendsRouter);
 app.use('/api/notices', noticeRouter);
 app.use('/api/user', userRouter);
 
