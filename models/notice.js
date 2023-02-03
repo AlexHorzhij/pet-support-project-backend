@@ -15,14 +15,17 @@ const noticeSchema = Schema(
     name: {
       type: String,
       require: false,
+      default: null,
     },
     birthdate: {
       type: String,
       require: false,
+      default: null,
     },
     breed: {
       type: String,
       require: false,
+      default: null,
     },
     sex: {
       type: String,

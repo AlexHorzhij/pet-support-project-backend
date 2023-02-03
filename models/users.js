@@ -22,11 +22,12 @@ const userSchema = Schema(
     },
     avatarUrl: {
       type: String,
-      default: false,
+      require: false,
     },
     birthdate: {
       type: String,
       require: false,
+      default: null,
     },
     city: {
       type: String,
@@ -35,6 +36,7 @@ const userSchema = Schema(
     verify: {
       type: Boolean,
       default: false,
+      default: null,
     },
     verificationToken: {
       type: String,
