@@ -2,8 +2,8 @@ const Joi = require('joi');
 
 const user = {
   name: Joi.string(),//.required(),
-  email: Joi.string()/*.required()*/.email(),
-  password: Joi.string()/*.required()*/.alphanum().min(7).max(32),
+  email: Joi.string(),//.required().email(),
+  password: Joi.string(),//.required().alphanum().min(7).max(32),
   avatarUrl: Joi.string().optional(),
   birthdate: Joi.string()
     .optional()
