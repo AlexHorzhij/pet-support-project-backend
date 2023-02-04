@@ -15,11 +15,8 @@ const getNews = async (req, res) => {
     limit: Number(limit),
   });
   res.json({
-    status: 'success',
-    code: 200,
-    data: {
-      result: news,
-    },
+    news
+  
   });
 };
 
