@@ -1,11 +1,11 @@
 const { Schema, model } = require('mongoose');
-const { NOTICE_STATUS } = require('../consts');
+const { NOTICE_CATEGORY_SCHEMA } = require('../consts');
 
 const noticeSchema = Schema(
   {
-    status: {
+    category: {
       type: String,
-      enum: NOTICE_STATUS,
+      enum: NOTICE_CATEGORY_SCHEMA,
       require: true,
     },
     title: {

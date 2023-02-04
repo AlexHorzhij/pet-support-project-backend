@@ -1,14 +1,15 @@
 const { Notice } = require('../../models');
-const { NOTICE_STATUS } = require('../../consts');
+const { NOTICE_CATEGORY } = require('../../consts');
 
 const getNotice = async (req, res) => {
-  const { page = 1, limit = 20, status, search } = req.query;
+  const { category } = req.params;
+  const { page = 1, limit = 20, search } = req.query;
   const skip = (page - 1) * limit;
 
   let filters = {};
 
-  if (status && NOTICE_STATUS.includes(status.toLowerCase())) {
-    filters = { ...filters, status: status.toLowerCase() };
+  if (category && NOTICE_CATEGORY[category]) {
+    filters = { ...filters, category: NOTICE_CATEGORY[category.toLowerCase()] };
   }
 
   if (search) {

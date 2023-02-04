@@ -13,6 +13,7 @@ const updateUser = async (req, res) => {
   }
 
   const { file } = req;
+
   if (file) {
     const fileFormat = file.mimetype.split('/')[1];
     const { base64 } = formatParcer(fileFormat, file.buffer);

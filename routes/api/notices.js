@@ -7,6 +7,6 @@ const {
   notice: { getNotice },
 } = require('../../controllers');
 
-router.get('/', ctrlWrapper(getNotice));
+router.get('/:category', ctrlWrapper(getNotice));
 
 module.exports = router;
