@@ -4,18 +4,23 @@ const { uploadToCloudinary } = require('../../helpers');
 const { formatParcer } = require('../../helpers');
 
 const updatePet = async (req, res) => {
-  const petId = req.params.id;
+  const { id } = req.params;
   const { file } = req;
-  const fileFormat = file.mimetype.split('/')[1];
-  const { base64 } = formatParcer(fileFormat, file.buffer);
-  const imageDetails = await uploadToCloudinary(base64, fileFormat);
+  if (file) {
+    const fileFormat = file.mimetype.split('/')[1];
+    const { base64 } = formatParcer(fileFormat, file.buffer);
 
-  avatarUrl = imageDetails.url;
-  const result = await Pet.findByIdAndUpdate(
-    petId,
-    { ...req.body, avatarUrl },
-    { new: true }
-  );
+    const imageDetails = await uploadToCloudinary(base64, fileFormat);
+
+    avatarUrl = imageDetails.url;
+    const result = await Pet.findByIdAndUpdate(
+      id,
+       {avatarUrl},
+      { new: true }
+    );
+  }
+
+  const result = await Pet.findByIdAndUpdate(id, req.body, { new: true });
 
   if (!result) {
     throw new NotFound('Not found');
