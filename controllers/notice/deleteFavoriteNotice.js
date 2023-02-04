@@ -12,12 +12,8 @@ const deleteFavoriteNotice = async (req, res) => {
     throw new NotFound('Notice not found');
   }
   res.json({
-    status: 'success',
-    code: 200,
-    message: 'notice deleted',
-    data: {
-      result,
-    },
+    result,
+    favorite: false,
   });
 };
 

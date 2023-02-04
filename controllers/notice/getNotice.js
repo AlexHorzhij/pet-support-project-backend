@@ -21,13 +21,9 @@ const getNotice = async (req, res) => {
     limit: Number(limit),
   });
 
-  res.json({
-    status: 'success',
-    code: 200,
-    data: {
-      result: notices,
-    },
-  });
+  res.json(
+    notices
+  );
 };
 
 module.exports = getNotice;

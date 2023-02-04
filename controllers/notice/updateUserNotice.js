@@ -16,13 +16,7 @@ const updateUserNotice = async (req, res) => {
     throw new NotFound('Notice not found');
   }
 
-  res.json({
-    status: 'success',
-    code: 200,
-    data: {
-      result,
-    },
-  });
+  res.json(result);
 };
 
 module.exports = updateUserNotice;

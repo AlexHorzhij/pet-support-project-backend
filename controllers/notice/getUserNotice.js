@@ -78,13 +78,7 @@ const getUserNotice = async (req, res) => {
 
   const result = await Notice.aggregate(pipelines);
 
-  res.json({
-    status: 'success',
-    code: 200,
-    data: {
-      result,
-    },
-  });
+  res.json(result);
 };
 
 module.exports = getUserNotice;

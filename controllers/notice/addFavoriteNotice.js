@@ -11,10 +11,13 @@ const addFavoriteNotice = async (req, res) => {
     throw new NotFound('Notice not found');
   }
 
-  const maybeAlreadyFavorite = await FavotiteNotice.findOne({ notice: noticeId, user: userId });
+  const maybeAlreadyFavorite = await FavotiteNotice.findOne({
+    notice: noticeId,
+    user: userId,
+  });
 
   if (maybeAlreadyFavorite) {
-    throw new BadRequest('Notice already liked')
+    throw new BadRequest('Notice already liked');
   }
 
   const result = await FavotiteNotice.create({
@@ -23,11 +26,8 @@ const addFavoriteNotice = async (req, res) => {
   });
 
   res.status(201).json({
-    status: 'success',
-    code: 201,
-    data: {
-      result,
-    },
+    result,
+    favorite: true,
   });
 };
 

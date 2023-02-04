@@ -8,13 +8,7 @@ const addUserNotice = async (req, res) => {
     create_at: date,
     owner: userId,
   });
-  res.status(201).json({
-    status: 'success',
-    code: 201,
-    data: {
-      result,
-    },
-  });
+  res.status(201).json(result);
 };
 
 module.exports = addUserNotice;
