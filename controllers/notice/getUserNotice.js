@@ -1,4 +1,4 @@
-const { NOTICE_STATUS } = require('../../consts');
+const { NOTICE_CATEGORY } = require('../../consts');
 
 const { Notice } = require('../../models');
 
@@ -6,7 +6,7 @@ const getUserNotice = async (req, res) => {
   const {
     page = 1,
     limit = 10,
-    status,
+    category,
     search,
     myNotice,
     favorite,
@@ -25,8 +25,11 @@ const getUserNotice = async (req, res) => {
     };
   }
 
-  if (status && NOTICE_STATUS.includes(status.toLowerCase())) {
-    filters.$match = { ...filters.$match, status: status.toLowerCase() };
+  if (category && NOTICE_CATEGORY[category]) {
+    filters.$match = {
+      ...filters.$match,
+      category: NOTICE_CATEGORY[category.toLowerCase()],
+    };
   }
 
   if (search) {

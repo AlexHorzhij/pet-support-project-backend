@@ -11,7 +11,9 @@ const updateUser = async (req, res) => {
     req.body.password = bcrypt.hashSync(userPassword, bcrypt.genSaltSync(10));
   }
   const { file } = req;
-  const fileFormat = file.mimetype.split('/')[1];
+
+  fileFormat = file.mimetype.split('/')[1];
+
   const { base64 } = formatParcer(fileFormat, file.buffer);
 
   const imageDetails = await uploadToCloudinary(base64, fileFormat);
