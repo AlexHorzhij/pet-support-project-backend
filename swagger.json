@@ -199,15 +199,15 @@
         }
       }
     },
-    "/notices": {
+    "/notices/{category}": {
       "get": {
         "tags": ["Notice"],
         "summary": "Get all notices",
         "parameters": [
           {
-          "name": "Notice category",
+          "name": "Category",
           "in": "query",
-          "description": "'sell', 'lost-found', 'for-free'",
+          "description": "Notice category: 'sell', 'lost-found', 'for-free'",
           "required": true,
           "schema": {
             "type": "string"
