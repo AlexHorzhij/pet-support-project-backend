@@ -20,11 +20,16 @@ const updateUser = async (req, res) => {
     const imageDetails = await uploadToCloudinary(base64, fileFormat);
 
     avatarUrl = imageDetails.url;
+    const result = await User.findByIdAndUpdate(
+      _id,
+       {avatarUrl},
+      { new: true }
+    );
   }
 
   const result = await User.findByIdAndUpdate(
     _id,
-    { ...req.body, avatarUrl },
+    req.body,
     { new: true }
   );
 

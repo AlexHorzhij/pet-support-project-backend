@@ -13,13 +13,14 @@ const updatePet = async (req, res) => {
     const imageDetails = await uploadToCloudinary(base64, fileFormat);
 
     avatarUrl = imageDetails.url;
+    const result = await Pet.findByIdAndUpdate(
+      id,
+       {avatarUrl},
+      { new: true }
+    );
   }
 
-  const result = await Pet.findByIdAndUpdate(
-    id,
-    { ...req.body, avatarUrl },
-    { new: true }
-  );
+  const result = await Pet.findByIdAndUpdate(id, req.body, { new: true });
 
   if (!result) {
     throw new NotFound('Not found');
