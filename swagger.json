@@ -199,15 +199,15 @@
         }
       }
     },
-    "/notices": {
+    "/notices/{category}": {
       "get": {
         "tags": ["Notice"],
         "summary": "Get all notices",
         "parameters": [
           {
-          "name": "Status for notice",
+          "name": "Category",
           "in": "query",
-          "description": "'sell', 'lost/found', 'in good hands'",
+          "description": "Notice category: 'sell', 'lost-found', 'for-free'",
           "required": true,
           "schema": {
             "type": "string"
@@ -304,9 +304,9 @@
           }
         },
         {
-          "name": "Status for notice",
+          "name": "Notice category",
           "in": "query",
-          "description": "'sell', 'lost/found', 'in good hands'",
+          "description": "'sell', 'lost-found', 'for-free'",
           "required": true,
           "schema": {
             "type": "string"
@@ -826,11 +826,10 @@
       },
       "UserPostNotice": {
         "type": "object",
-        "required": ["status", "title", "avatarUrl", "sex"],
         "properties": {
-          "status": {
+          "category": {
             "type": "string",
-            "description": "Notice's status",
+            "description": "Notice's category",
             "example": "sell"
           },
           "title": {
@@ -880,6 +879,7 @@
           }
         }
       }
+      
 
     },
 
