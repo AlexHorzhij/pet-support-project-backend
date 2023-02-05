@@ -50,7 +50,7 @@ const noticeSchema = Schema(
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: 'users',
+      ref: 'user',
       require: true,
     },
     create_at: {

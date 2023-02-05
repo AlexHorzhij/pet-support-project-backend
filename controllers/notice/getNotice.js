@@ -16,14 +16,16 @@ const getNotice = async (req, res) => {
     filters = { ...filters, title: new RegExp(`${search}`) };
   }
 
-  const notices = await Notice.find(filters, '', {
+  const result = await Notice.find(filters, '', {
     skip,
     limit: Number(limit),
   });
+  const notices = await Notice.populate(result, {
+    path: 'owner',
+    select: '_id name phone',
+  });
 
-  res.json(
-    notices
-  );
+  res.status(200).json(notices);
 };
 
 module.exports = getNotice;
