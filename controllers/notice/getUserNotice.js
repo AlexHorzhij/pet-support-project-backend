@@ -77,8 +77,12 @@ const getUserNotice = async (req, res) => {
   ];
 
   const result = await Notice.aggregate(pipelines);
+  const notices = await Notice.populate(result, {
+    path: 'owner',
+    select: '_id name phone',
+  });
 
-  res.json(result);
+  res.status(200).json(notices);
 };
 
 module.exports = getUserNotice;
