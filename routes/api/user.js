@@ -8,11 +8,9 @@ const {
   user: { getUserPage, updateUser },
   pets: { addPet, deletePet, updatePet },
   notice: {
-    getUserNotice,
     addUserNotice,
     deleteUserNotice,
     updateUserNotice,
-    getFavoriteNotice,
     deleteFavoriteNotice,
     addFavoriteNotice,
   },
@@ -29,8 +27,6 @@ const {
 const router = express.Router();
 
 router.get('/', authentificate, ctrlWrapper(getUserPage));
-router.get('/notices', authentificate, ctrlWrapper(getUserNotice));
-router.get('/notices/favorite', authentificate, ctrlWrapper(getFavoriteNotice));
 
 router.post(
   '/pets',
