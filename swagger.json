@@ -7,7 +7,7 @@
   },
   "consumes": ["application/json"],
   "produces": ["application/json"],
-  "servers": [{ "url": "http://localhost:3000" }],
+  "servers": [{ "url": "https://pet-support-project.onrender.com" }],
   "tags": [
     {
       "name": "Auth",
@@ -32,7 +32,7 @@
   ],
 
   "paths": {
-    "/auth/signup": {
+    "/api/auth/signup": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -61,7 +61,7 @@
         }
       }
     },
-    "/auth/login": {
+    "/api/auth/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "User login",
@@ -90,7 +90,7 @@
         }
       }
     },
-    "/auth/logout": {
+    "/api/auth/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -117,7 +117,7 @@
         }
       }
     },
-    "/auth/verify": {
+    "/api/auth/verify": {
       "post": {
         "tags": ["Auth"],
         "summary": "User verification",
@@ -146,7 +146,7 @@
         }
       }
     },
-    "/auth/verify/{verificationToken}": {
+    "/api/auth/verify/{verificationToken}": {
       "get": {
         "tags": ["Auth"],
         "summary": "Repeat verify email",
@@ -169,7 +169,7 @@
         }
       }
     },
-    "/news": {
+    "/api/news": {
       "get": {
         "tags": ["News"],
         "summary": "News about pets",
@@ -184,7 +184,7 @@
         }
       }
     },
-    "/friends": {
+    "/api/friends": {
       "get": {
         "tags": ["Friends"],
         "summary": "Services for pets",
@@ -199,7 +199,7 @@
         }
       }
     },
-    "/notices": {
+    "/api/notices": {
       "get": {
         "tags": ["Notice"],
         "summary": "Get all notices",
@@ -224,7 +224,7 @@
         }
       }
     },
-    "/user": {
+    "/api/user": {
       "get": {
         "tags": ["User"],
         "summary": "Get information about current user and current user's pets",
@@ -290,7 +290,7 @@
         }
       }
     },
-    "/user/notices": {
+    "/api/user/notices": {
       "get": {
         "tags": ["User"],
         "summary": "Get information about current user's notices",
@@ -366,7 +366,7 @@
         }
       }
     },
-    "/user/notices/{id}": {
+    "/api/user/notices/{id}": {
       "patch": {
         "tags": ["User"],
         "summary": "Update information about current user's notice",
@@ -452,7 +452,7 @@
         }
       }
     },
-    "/user/notices/{id}/favorite":{
+    "/api/user/notices/{id}/favorite":{
       "post": {
         "tags": ["User"],
         "summary": "Add current user's notice to the favorite",
@@ -530,7 +530,7 @@
         }
       }
     },
-    "/user/notices/favorite":{
+    "/api/user/notices/favorite":{
       "get": {
         "tags": ["User"],
         "summary": "Get information about current user's favorite notices",
@@ -560,7 +560,7 @@
         }
       }
     },
-    "/user/pets":{
+    "/api/user/pets":{
       "post": {
         "tags": ["User"],
         "summary": "Add pet of the current user",
@@ -598,7 +598,7 @@
         }
       }
     },
-    "/user/pets/{id}":{
+    "/api/user/pets/{id}":{
       "patch": {
         "tags": ["User"],
         "summary": "Update information about current user's pet",
