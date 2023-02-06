@@ -2,8 +2,8 @@ const { Notice } = require('../../models');
 const { NotFound } = require('http-errors');
 
 const deleteUserNotice = async (req, res) => {
-  const noticeId = req.params.id;
-  const userId = req.user._id;
+  const { noticeId } = req.params;
+  const { userId } = req.user;
   const result = await Notice.findOneAndRemove({
     owner: userId,
     _id: noticeId,
