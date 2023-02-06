@@ -18,7 +18,7 @@
       "description": "Users endpoints"
     },
     {
-      "name": "Notice",
+      "name": "Notices",
       "description": "Notices endpoints"
     },
     {
@@ -201,7 +201,7 @@
     },
     "/api/notices": {
       "get": {
-        "tags": ["Notice"],
+        "tags": ["Notices"],
         "summary": "Get all notices",
         "parameters": [
           {
@@ -220,6 +220,76 @@
           },
           "500": {
             "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/notices/user":{
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get information about current user's notices",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "Notice category",
+          "in": "query",
+          "description": "'sell', 'lost-found', 'for-free'",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      }
+    },
+    "/api/notices/user/favorite":{
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get information about current user's favorite notices",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
           }
         }
       }
@@ -291,44 +361,6 @@
       }
     },
     "/api/user/notices": {
-      "get": {
-        "tags": ["User"],
-        "summary": "Get information about current user's notices",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "Notice category",
-          "in": "query",
-          "description": "'sell', 'lost-found', 'for-free'",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "200": {
-            "description": "Successful operation"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "404": {
-            "description": "There is no such user"    
-          },
-          "500": {
-            "description": "Server error"    
-          }
-        }
-      },
       "post": {
         "tags": ["User"],
         "summary": "Add a new notice of current user",
@@ -523,36 +555,6 @@
           },
           "404": {
             "description": "Notice not found"    
-          },
-          "500": {
-            "description": "Server error"    
-          }
-        }
-      }
-    },
-    "/api/user/notices/favorite":{
-      "get": {
-        "tags": ["User"],
-        "summary": "Get information about current user's favorite notices",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "200": {
-            "description": "Successful operation"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "404": {
-            "description": "There is no such user"    
           },
           "500": {
             "description": "Server error"    
