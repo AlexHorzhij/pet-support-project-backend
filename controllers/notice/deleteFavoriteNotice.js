@@ -1,8 +1,8 @@
 const { FavotiteNotice } = require('../../models');
 
 const deleteFavoriteNotice = async (req, res) => {
-  const noticeId = req.params.id;
-  const userId = req.user._id;
+  const { noticeId } = req.params;
+  const { userId } = req.user;
   const result = await FavotiteNotice.findOneAndRemove({
     user: userId,
     notice: noticeId,

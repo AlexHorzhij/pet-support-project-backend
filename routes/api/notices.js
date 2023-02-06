@@ -2,14 +2,52 @@ const express = require('express');
 const router = express.Router();
 
 const { ctrlWrapper } = require('../../helpers');
-const { authentificate } = require('../../middlewares');
+const { validateBody, authentificate, upload } = require('../../middlewares');
 
 const {
-  notice: { getNotice, getUserNotice, getFavoriteNotice },
+  notice: {
+    getNotice,
+    getUserNotice,
+    getFavoriteNotice,
+    addUserNotice,
+    addFavoriteNotice,
+    updateUserNotice,
+    deleteUserNotice,
+    deleteFavoriteNotice,
+  },
 } = require('../../controllers');
+
+const { createNoticeSchema, updateNoticeSchema } = require('../../schemas');
 
 router.get('/', ctrlWrapper(getNotice));
 router.get('/user', authentificate, ctrlWrapper(getUserNotice));
 router.get('/user/favorite', authentificate, ctrlWrapper(getFavoriteNotice));
+
+router.post(
+  '/user',
+  authentificate,
+  validateBody(createNoticeSchema),
+  ctrlWrapper(addUserNotice)
+);
+
+router.post(
+  '/user/:noticeId/favorite',
+  authentificate,
+  ctrlWrapper(addFavoriteNotice)
+);
+
+router.patch(
+  '/user/:noticeId',
+  authentificate,
+  validateBody(updateNoticeSchema),
+  ctrlWrapper(updateUserNotice)
+);
+
+router.delete('/user/:noticeId', authentificate, ctrlWrapper(deleteUserNotice));
+router.delete(
+  '/user/:noticeId/favorite',
+  authentificate,
+  ctrlWrapper(deleteFavoriteNotice)
+);
 
 module.exports = router;

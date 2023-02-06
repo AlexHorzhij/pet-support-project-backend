@@ -2,8 +2,8 @@ const { Notice } = require('../../models');
 const { NotFound } = require('http-errors');
 
 const updateUserNotice = async (req, res) => {
-  const noticetId = req.params.id;
-  const userId = req.user._id;
+  const { noticetId } = req.params;
+  const { userId } = req.user;
   const result = await Notice.findOneAndUpdate(
     { noticetId, userId },
     req.body,
@@ -16,7 +16,7 @@ const updateUserNotice = async (req, res) => {
     throw new NotFound('Notice not found');
   }
 
-  res.json(result);
+  res.status(200).json(result);
 };
 
 module.exports = updateUserNotice;
