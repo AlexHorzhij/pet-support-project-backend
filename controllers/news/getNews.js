@@ -7,7 +7,7 @@ const getNews = async (req, res) => {
   let filters = {};
 
   if (search) {
-    filters = { ...filters, title: new RegExp(`${search}`) };
+    filters = { ...filters, title: new RegExp(`${search}`, 'i') };
   }
 
   const news = await News.find(filters, '', {
@@ -15,8 +15,7 @@ const getNews = async (req, res) => {
     limit: Number(limit),
   });
   res.json({
-    news
-  
+    news,
   });
 };
 

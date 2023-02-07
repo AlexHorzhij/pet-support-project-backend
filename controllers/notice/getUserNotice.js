@@ -33,7 +33,7 @@ const getUserNotice = async (req, res) => {
   }
 
   if (search) {
-    filters.$match = { ...filters.$match, title: new RegExp(`${search}`) };
+    filters.$match = { ...filters.$match, title: new RegExp(`${search}`, 'i') };
   }
 
   if (favorite) {
