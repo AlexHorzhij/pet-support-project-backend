@@ -1,7 +1,7 @@
 const { Notice } = require('../../models');
 
 const addUserNotice = async (req, res) => {
-  const { userId } = req.user;
+  const userId = req.user._id;
   const date = Date.now();
   const { file } = req;
   if (!file) {

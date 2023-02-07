@@ -4,7 +4,8 @@ const { NotFound, BadRequest } = require('http-errors');
 
 const addFavoriteNotice = async (req, res) => {
   const { noticeId } = req.params;
-  const { userId } = req.user;
+  const userId = req.user._id;
+  console.log(userId);
   const notice = await Notice.findOne({ _id: noticeId });
 
   if (!notice) {
