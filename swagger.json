@@ -1032,9 +1032,9 @@
       },
       "UserPostNotice": {
         "type": "object",
-        "required": ["category", "title","avatarUrl", "sex"],
+        "required": ["status", "title","avatarUrl", "sex"],
         "properties": {
-          "category": {
+          "status": {
             "type": "string",
             "description": "Notice's category",
             "example": "sell"
@@ -1079,7 +1079,7 @@
             "description": "Pet's price",
             "example": "500$"
           },
-          "description": {
+          "comments": {
             "type": "string",
             "description": "User's comments about pet",
             "example": "Very beautiful, smart and strong. Good for long walks"
