@@ -208,9 +208,17 @@
         "summary": "Get all notices",
         "parameters": [
           {
-          "name": "Search",
+          "name": "category",
           "in": "query",
-          "description": "Search = 'sell', 'lost-found', 'for-free'",
+          "description": "Notice category = 'sell', 'lost-found', 'for-free'",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "search",
+          "in": "query",
+          "description": "Search",
           "schema": {
             "type": "string"
           }
@@ -240,17 +248,33 @@
           }
         },
         {
-          "name": "Search",
+          "name": "category",
           "in": "query",
-          "description": "Search = 'sell', 'lost-found', 'for-free'",
+          "description": "Notice category = 'sell', 'lost-found', 'for-free'",
           "schema": {
             "type": "string"
           }
         },
         {
-          "name": "Favorite",
+          "name": "search",
           "in": "query",
-          "description": "Favorite = 'true', 'false'",
+          "description": "Search",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "myNotice",
+          "in": "query",
+          "description": "Current user's notices = 'true', 'false'",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "favorite",
+          "in": "query",
+          "description": "Current user's favorite notices  = 'true', 'false'",
           "schema": {
             "type": "boolean"
           }
