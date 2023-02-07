@@ -27,14 +27,14 @@ const updateUser = async (req, res) => {
       { new: true }
     );
   }
+  if (req.body.email) {
+    throw new BadRequest('Email cannot be changed');
+  }
 
   const result = await User.findByIdAndUpdate(_id, req.body, { new: true });
 
   if (!result) {
     throw new NotFound('Not found');
-  }
-  if (req.body.email) {
-    throw new BadRequest('Email cannot be changed');
   }
 
   res.status(201).json({
