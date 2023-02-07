@@ -210,8 +210,7 @@
           {
           "name": "Search",
           "in": "query",
-          "description": "Search = 'null', 'sell', 'lost-found', 'for-free'",
-          "required": true,
+          "description": "Search = 'sell', 'lost-found', 'for-free'",
           "schema": {
             "type": "string"
           }
@@ -223,6 +222,53 @@
           },
           "500": {
             "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/notices/user":{
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get information about current user's notices",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "Search",
+          "in": "query",
+          "description": "Search = 'sell', 'lost-found', 'for-free'",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "Favorite",
+          "in": "query",
+          "description": "Favorite = 'true', 'false'",
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
           }
         }
       },
@@ -259,46 +305,6 @@
           },
           "400": {
             "description": "Error"    
-          }
-        }
-      }
-    },
-    "/api/notices/user":{
-      "get": {
-        "tags": ["Notices"],
-        "summary": "Get information about current user's notices",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "Search",
-          "in": "query",
-          "description": "Search = 'null', 'sell', 'lost-found', 'for-free'",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "200": {
-            "description": "Successful operation"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "404": {
-            "description": "There is no such user"    
-          },
-          "500": {
-            "description": "Server error"    
           }
         }
       }
@@ -557,208 +563,6 @@
           },
           "404": {
             "description": "User not found"
-          },
-          "500": {
-            "description": "Server error"    
-          }
-        }
-      }
-    },
-    "/api/user/notices": {
-      "post": {
-        "tags": ["User"],
-        "summary": "Add a new notice of current user",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "requestBody": {
-          "description": "Notice information's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostNotice"
-              }
-            }
-          }
-        },
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "201": {
-            "description": "Successful operation"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "400": {
-            "description": "Error"    
-          }
-        }
-      }
-    },
-    "/api/user/notices/{id}": {
-      "patch": {
-        "tags": ["User"],
-        "summary": "Update information about current user's notice",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-      {
-          "name": "Id",
-          "in": "path",
-          "description": "Notice's Id",
-          "required": true,
-          "schema": {
-            "type": "integer"
-          }
-        }
-      ],
-        "requestBody": {
-          "description": "Notice information's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostNotice"
-              }
-            }
-          }
-        },
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "201": {
-            "description": "Successful operation"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "400": {
-            "description": "Error"    
-          }
-        }
-      },
-      "delete": {
-        "tags": ["User"],
-        "summary": "Delete current user's notice",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-      {
-          "name": "Id",
-          "in": "path",
-          "description": "Notice's Id",
-          "required": true,
-          "schema": {
-            "type": "integer"
-          }
-        }
-      ],
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "200": {
-            "description": "Notice deleted"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "404": {
-            "description": "There is no such user"    
-          },
-          "500": {
-            "description": "Server error"    
-          }
-        }
-      }
-    },
-    "/api/user/notices/{id}/favorite":{
-      "post": {
-        "tags": ["User"],
-        "summary": "Add current user's notice to the favorite",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "Id",
-          "in": "path",
-          "description": "Notice's Id",
-          "required": true,
-          "schema": {
-            "type": "integer"
-          }
-        }
-      ],
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "201": {
-            "description": "Successful operation"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "400": {
-            "description": "Notice already liked"    
-          },
-          "404": {
-            "description": "Notice not found"    
-          }
-        }
-      },
-      "delete": {
-        "tags": ["User"],
-        "summary": "Delete current user's notice from favorite",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-      {
-          "name": "Id",
-          "in": "path",
-          "description": "Notice's Id",
-          "required": true,
-          "schema": {
-            "type": "integer"
-          }
-        }
-      ],
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "200": {
-            "description": "Notice deleted"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "404": {
-            "description": "Notice not found"    
           },
           "500": {
             "description": "Server error"    
