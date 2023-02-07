@@ -169,6 +169,7 @@
         }
       }
     },
+
     "/api/news": {
       "get": {
         "tags": ["News"],
@@ -184,6 +185,7 @@
         }
       }
     },
+
     "/api/friends": {
       "get": {
         "tags": ["Friends"],
@@ -199,15 +201,16 @@
         }
       }
     },
+
     "/api/notices": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get all notices",
         "parameters": [
           {
-          "name": "Category",
+          "name": "Search",
           "in": "query",
-          "description": "Notice category: 'sell', 'lost-found', 'for-free'",
+          "description": "Search = 'null', 'sell', 'lost-found', 'for-free'",
           "required": true,
           "schema": {
             "type": "string"
@@ -220,6 +223,42 @@
           },
           "500": {
             "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Notices"],
+        "summary": "Add a new notice of current user",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "description": "Notice information's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPostNotice"
+              }
+            }
+          }
+        },
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "400": {
+            "description": "Error"    
           }
         }
       }
@@ -238,9 +277,9 @@
           }
         },
         {
-          "name": "Notice category",
+          "name": "Search",
           "in": "query",
-          "description": "'sell', 'lost-found', 'for-free'",
+          "description": "Search = 'null', 'sell', 'lost-found', 'for-free'",
           "required": true,
           "schema": {
             "type": "string"
@@ -257,6 +296,170 @@
           },
           "404": {
             "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      }
+    },
+    "/api/notices/user/{noticeId}":{
+      "patch": {
+        "tags": ["Notices"],
+        "summary": "Update information about current user's notice",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+      {
+          "name": "NoticeId",
+          "in": "path",
+          "description": "Notice's Id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+        "requestBody": {
+          "description": "Notice information's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPostNotice"
+              }
+            }
+          }
+        },
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "400": {
+            "description": "Error"    
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Delete current user's notice",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+      {
+          "name": "NoticeId",
+          "in": "path",
+          "description": "Notice's Id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Notice deleted"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
+      }
+    },
+    "/api/notices/user/{noticeId}/favorite":{
+      "post": {
+        "tags": ["Notices"],
+        "summary": "Add current user's notice to the favorite",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "NoticeId",
+          "in": "path",
+          "description": "Notice's Id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "400": {
+            "description": "Notice already liked"    
+          },
+          "404": {
+            "description": "Notice not found"    
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Delete current user's notice from favorite",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+      {
+          "name": "NoticeId",
+          "in": "path",
+          "description": "Notice's Id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Notice deleted"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "Notice not found"    
           },
           "500": {
             "description": "Server error"    
@@ -294,6 +497,7 @@
         }
       }
     },
+
     "/api/user": {
       "get": {
         "tags": ["User"],
@@ -828,9 +1032,9 @@
       },
       "UserPostNotice": {
         "type": "object",
-        "required": ["category", "title","avatarUrl", "sex"],
+        "required": ["status", "title","avatarUrl", "sex"],
         "properties": {
-          "category": {
+          "status": {
             "type": "string",
             "description": "Notice's category",
             "example": "sell"
@@ -875,7 +1079,7 @@
             "description": "Pet's price",
             "example": "500$"
           },
-          "description": {
+          "comments": {
             "type": "string",
             "description": "User's comments about pet",
             "example": "Very beautiful, smart and strong. Good for long walks"
