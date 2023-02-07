@@ -5,7 +5,6 @@ const NOTICE_CATEGORY = {
 };
 
 const NOTICE_CATEGORY_SCHEMA = Object.values(NOTICE_CATEGORY);
-console.log(NOTICE_CATEGORY_SCHEMA);
 
 module.exports = {
   NOTICE_CATEGORY,

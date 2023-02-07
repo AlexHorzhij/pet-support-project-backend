@@ -3,7 +3,7 @@ const { NotFound } = require('http-errors');
 
 const updateUserNotice = async (req, res) => {
   const { noticetId } = req.params;
-  const { userId } = req.user;
+  const userId = req.user._id;
   const result = await Notice.findOneAndUpdate(
     { noticetId, userId },
     req.body,

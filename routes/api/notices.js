@@ -8,7 +8,6 @@ const {
   notice: {
     getNotice,
     getUserNotice,
-    getFavoriteNotice,
     addUserNotice,
     addFavoriteNotice,
     updateUserNotice,
@@ -21,7 +20,6 @@ const { createNoticeSchema, updateNoticeSchema } = require('../../schemas');
 
 router.get('/', ctrlWrapper(getNotice));
 router.get('/user', authentificate, ctrlWrapper(getUserNotice));
-router.get('/user/favorite', authentificate, ctrlWrapper(getFavoriteNotice));
 
 router.post(
   '/user',

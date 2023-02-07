@@ -3,7 +3,7 @@ const { Notice } = require('../../models');
 const getFavoriteNotice = async (req, res) => {
   const { page = 1, limit = 20 } = req.query;
   const skip = (page - 1) * limit;
-  const { userId } = req.user;
+  const userId = req.user._id;
 
   let pipelines = [
     [
