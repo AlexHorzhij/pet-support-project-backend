@@ -38,7 +38,8 @@ const noticeSchema = Schema(
     },
     price: {
       type: Number,
-      require: true,
+      require: false,
+      default: null,
     },
     avatarUrl: {
       type: String,
