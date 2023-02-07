@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const notice = {
-  status: Joi.string().valid('lost/found', 'in good hands', 'sell').required(),
+  category: Joi.string().valid('lost/found', 'in good hands', 'sell').required(),
   title: Joi.string().min(2).max(48).required(),
   name: Joi.string().alphanum().min(2).max(16).optional(),
   birthdate: Joi.string()
@@ -16,7 +16,7 @@ const notice = {
 };
 
 const createNoticeSchema = Joi.object({
-  status: notice.status,
+  category: notice.category,
   title: notice.title,
   name: notice.name,
   birthdate: notice.birthdate,
@@ -29,7 +29,7 @@ const createNoticeSchema = Joi.object({
 }).required();
 
 const updateNoticeSchema = Joi.object({
-  status: notice.status.optional(),
+  category: notice.category.optional(),
   title: notice.title.optional(),
   name: notice.name,
   birthdate: notice.birthdate,

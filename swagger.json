@@ -497,36 +497,6 @@
         }
       }
     },
-    "/api/notices/user/favorite":{
-      "get": {
-        "tags": ["Notices"],
-        "summary": "Get information about current user's favorite notices",
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "description": "The token issued to the current user",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "200": {
-            "description": "Successful operation"
-          },
-          "401": {
-            "description": "Missing header with authorization token"    
-          },
-          "404": {
-            "description": "There is no such user"    
-          },
-          "500": {
-            "description": "Server error"    
-          }
-        }
-      }
-    },
 
     "/api/user": {
       "get": {
@@ -787,18 +757,12 @@
       },
       "UserUpdate": {
         "type": "object",
-        "required": ["name", "email", "password", "avatarUrl", "birthdate", "phone", "city"],
+        "required": ["name", "password", "avatarUrl", "birthdate", "phone", "city"],
         "properties": {
           "name": {
             "type": "string",
             "description": "User's name",
             "example": "Taras Shevchenko"
-          },
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email",
-            "example": "user@mail.com"
           },
           "password": {
             "type": "string",
@@ -860,9 +824,9 @@
       },
       "UserPostNotice": {
         "type": "object",
-        "required": ["status", "title","avatarUrl", "sex"],
+        "required": ["category", "title","avatarUrl", "sex"],
         "properties": {
-          "status": {
+          "category": {
             "type": "string",
             "description": "Notice's category",
             "example": "sell"
@@ -905,7 +869,7 @@
           "price": {
             "type": "number",
             "description": "Pet's price",
-            "example": "500$"
+            "example": 500
           },
           "comments": {
             "type": "string",
