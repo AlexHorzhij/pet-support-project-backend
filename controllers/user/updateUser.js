@@ -1,5 +1,5 @@
 const { User } = require('../../models');
-const { NotFound } = require('http-errors');
+const { NotFound, BadRequest } = require('http-errors');
 const bcrypt = require('bcrypt');
 const { uploadToCloudinary } = require('../../helpers');
 const { formatParcer } = require('../../helpers');
@@ -23,20 +23,20 @@ const updateUser = async (req, res) => {
     avatarUrl = imageDetails.url;
     const result = await User.findByIdAndUpdate(
       _id,
-       {avatarUrl},
+      { avatarUrl },
       { new: true }
     );
   }
+  if (req.body.email) {
+    throw new BadRequest('Email cannot be changed');
+  }
 
-  const result = await User.findByIdAndUpdate(
-    _id,
-    req.body,
-    { new: true }
-  );
+  const result = await User.findByIdAndUpdate(_id, req.body, { new: true });
 
   if (!result) {
     throw new NotFound('Not found');
   }
+
   res.status(201).json({
     _id,
     name: result.name,
