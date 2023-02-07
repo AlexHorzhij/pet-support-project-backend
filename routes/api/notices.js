@@ -25,6 +25,7 @@ router.post(
   '/user',
   authentificate,
   validateBody(createNoticeSchema),
+  upload.single('avatarUrl'),
   ctrlWrapper(addUserNotice)
 );
 
