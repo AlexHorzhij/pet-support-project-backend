@@ -12,7 +12,7 @@ const getNotice = async (req, res) => {
   }
 
   if (search) {
-    filters = { ...filters, title: new RegExp(`${search}`) };
+    filters = { ...filters, title: new RegExp(`${search}`, 'i') };
   }
 
   const result = await Notice.find(filters, '', {
