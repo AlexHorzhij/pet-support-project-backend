@@ -174,7 +174,16 @@
       "get": {
         "tags": ["News"],
         "summary": "News about pets",
-        "parameters": [],
+        "parameters": [
+          {
+          "name": "search",
+          "in": "query",
+          "description": "Search",
+          "schema": {
+            "type": "string"
+          }
+        }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation"
