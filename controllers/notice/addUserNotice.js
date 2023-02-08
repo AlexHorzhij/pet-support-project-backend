@@ -17,13 +17,22 @@ const addUserNotice = async (req, res) => {
 
     avatarUrl = imageDetails.url;
   }
+
   const result = await Notice.create({
     ...req.body,
     avatarUrl,
     create_at: date,
     owner: userId,
   });
-  res.status(201).json(result);
+
+  res.status(201).json({
+    ...result.toObject(),
+    owner: {
+      _id: req.user._id,
+      name: req.user.name,
+      phone: req.user.phone,
+    },
+  });
 };
 
 module.exports = addUserNotice;
