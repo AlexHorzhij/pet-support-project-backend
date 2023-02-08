@@ -13,9 +13,7 @@ const verify = async (req, res) => {
     verificationToken: '',
   });
 
-  res.json({
-    message: 'Verification successful',
-  });
+  res.redirect('https://reg-pet-support.netlify.app/login');
 };
 
 module.exports = verify;
