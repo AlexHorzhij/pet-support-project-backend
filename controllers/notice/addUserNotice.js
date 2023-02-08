@@ -27,7 +27,11 @@ const addUserNotice = async (req, res) => {
 
   res.status(201).json({
     ...result.toObject(),
-    owner: req.user,
+    owner: {
+      _id: req.user._id,
+      name: req.user.name,
+      phone: req.user.phone,
+    },
   });
 };
 
