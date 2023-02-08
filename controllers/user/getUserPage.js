@@ -1,5 +1,4 @@
-const { Pet } = require('../../models');
-const { User } = require('../../models');
+const { Pet, User } = require('../../models');
 const { NotFound } = require('http-errors');
 
 const getUserPage = async (req, res) => {
