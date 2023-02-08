@@ -182,6 +182,22 @@
           "schema": {
             "type": "string"
           }
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "description": "Current page",
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "Limit of notices on the page",
+          "schema": {
+            "type": "number"
+          }
         }
         ],
         "responses": {
@@ -230,6 +246,22 @@
           "description": "Search",
           "schema": {
             "type": "string"
+          }
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "description": "Current page",
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "Limit of notices on the page",
+          "schema": {
+            "type": "number"
           }
         }
         ],
@@ -286,6 +318,22 @@
           "description": "Current user's favorite notices  = 'true', 'false'",
           "schema": {
             "type": "boolean"
+          }
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "description": "Current page",
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "Limit of notices on the page",
+          "schema": {
+            "type": "number"
           }
         }
       ],
