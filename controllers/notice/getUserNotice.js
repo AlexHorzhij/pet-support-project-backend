@@ -1,5 +1,4 @@
 const { NOTICE_CATEGORY } = require('../../consts');
-
 const { Notice } = require('../../models');
 
 const getUserNotice = async (req, res) => {

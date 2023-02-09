@@ -6,8 +6,8 @@ const { formatParcer } = require('../../helpers');
 
 const updateUser = async (req, res) => {
   const { _id } = req.user;
-
   const userPassword = req.body.password;
+
   if (userPassword) {
     req.body.password = bcrypt.hashSync(userPassword, bcrypt.genSaltSync(10));
   }
@@ -17,16 +17,17 @@ const updateUser = async (req, res) => {
   if (file) {
     const fileFormat = file.mimetype.split('/')[1];
     const { base64 } = formatParcer(fileFormat, file.buffer);
-
     const imageDetails = await uploadToCloudinary(base64, fileFormat);
 
     avatarUrl = imageDetails.url;
+
     const result = await User.findByIdAndUpdate(
       _id,
       { avatarUrl },
       { new: true }
     );
   }
+
   if (req.body.email) {
     throw new BadRequest('Email cannot be changed');
   }
