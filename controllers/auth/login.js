@@ -3,7 +3,8 @@ const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { SECRET_KEY } = process.env;
+const { SECRET_KEY } = require('../../config.js');
+;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
