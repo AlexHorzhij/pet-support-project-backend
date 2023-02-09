@@ -1,11 +1,9 @@
-const { FavotiteNotice } = require('../../models');
-const { Notice } = require('../../models');
+const { FavotiteNotice, Notice } = require('../../models');
 const { NotFound, BadRequest } = require('http-errors');
 
 const addFavoriteNotice = async (req, res) => {
   const { noticeId } = req.params;
   const userId = req.user._id;
-  console.log(userId);
   const notice = await Notice.findOne({ _id: noticeId });
 
   if (!notice) {
