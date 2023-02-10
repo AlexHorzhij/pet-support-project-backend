@@ -5,7 +5,7 @@ const { ctrlWrapper } = require('../../helpers');
 const { validateBody, authentificate, upload } = require('../../middlewares');
 
 const {
-  user: { getUserPage, updateUser },
+  user: { getUserPage, updateUser, deleteUser },
   pets: { addPet, deletePet, updatePet },
 } = require('../../controllers');
 
@@ -42,6 +42,8 @@ router.patch(
   upload.single('avatarUrl'),
   ctrlWrapper(updatePet)
 );
+
+router.delete('/', authentificate, ctrlWrapper(deleteUser));
 
 router.delete('/pets/:id', authentificate, ctrlWrapper(deletePet));
 
