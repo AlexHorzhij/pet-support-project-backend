@@ -619,6 +619,35 @@
             "description": "Server error"    
           }
         }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Delete current user",
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "The token issued to the current user",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "User deleted"
+          },
+          "401": {
+            "description": "Missing header with authorization token"    
+          },
+          "404": {
+            "description": "There is no such user"    
+          },
+          "500": {
+            "description": "Server error"    
+          }
+        }
       }
     },
     "/api/user/pets":{
