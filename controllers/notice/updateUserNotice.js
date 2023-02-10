@@ -2,15 +2,11 @@ const { Notice } = require('../../models');
 const { NotFound } = require('http-errors');
 
 const updateUserNotice = async (req, res) => {
-  const { noticetId } = req.params;
+  const { noticeId } = req.params;
   const userId = req.user._id;
-  const result = await Notice.findOneAndUpdate(
-    { noticetId, userId },
-    req.body,
-    {
-      new: true,
-    }
-  );
+  const result = await Notice.findOneAndUpdate({ noticeId, userId }, req.body, {
+    new: true,
+  });
 
   if (!result) {
     throw new NotFound('Notice not found');
