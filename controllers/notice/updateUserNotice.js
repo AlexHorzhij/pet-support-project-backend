@@ -5,7 +5,6 @@ const { formatParcer } = require('../../helpers');
 
 const updateUserNotice = async (req, res) => {
   const { noticeId } = req.params;
-  const userId = req.user._id;
   const { file } = req;
 
   if (file) {
@@ -18,7 +17,7 @@ const updateUserNotice = async (req, res) => {
     await Notice.findByIdAndUpdate(noticeId, { avatarUrl }, { new: true });
   }
 
-  const result = await Notice.findOneAndUpdate(noticeId, req.body, {
+  const result = await Notice.findByIdAndUpdate(noticeId, req.body, {
     new: true,
   });
 
