@@ -24,8 +24,8 @@ router.get('/user', authentificate, ctrlWrapper(getUserNotice));
 router.post(
   '/user',
   authentificate,
-  validateBody(noticeSchema),
   upload.single('avatarUrl'),
+  validateBody(noticeSchema),
   ctrlWrapper(addUserNotice)
 );
 
@@ -38,8 +38,8 @@ router.post(
 router.patch(
   '/user/:noticeId',
   authentificate,
-  validateBody(noticeSchema),
   upload.single('avatarUrl'),
+  validateBody(noticeSchema),
   ctrlWrapper(updateUserNotice)
 );
 

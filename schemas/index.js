@@ -4,11 +4,11 @@ const {
   updateUserSchema,
   verifyEmailSchema,
   resetPasswordSchema,
-  emailSchema
+  emailSchema,
 } = require('./user');
 
 const { createPetSchema, updatePetSchema } = require('./pet');
-const { createNoticeSchema, updateNoticeSchema } = require('./notice');
+const { noticeSchema } = require('./notice');
 
 module.exports = {
   signupUserSchema,
@@ -18,7 +18,6 @@ module.exports = {
   resetPasswordSchema,
   createPetSchema,
   updatePetSchema,
-  createNoticeSchema,
-  updateNoticeSchema,
-  emailSchema
+  noticeSchema,
+  emailSchema,
 };
