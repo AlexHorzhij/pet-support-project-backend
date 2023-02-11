@@ -4,10 +4,14 @@ const { NotFound } = require('http-errors');
 const updateUserNotice = async (req, res) => {
   const { noticeId } = req.params;
   const userId = req.user._id;
-  const result = await Notice.findOneAndUpdate({ noticeId, userId }, req.body, {
-    new: true,
-  });
-
+  const result = await Notice.findOneAndUpdate(
+    { _id: noticeId, owner: userId },
+    req.body,
+    {
+      new: true,
+    }
+  );
+  console.log(result);
   if (!result) {
     throw new NotFound('Notice not found');
   }
