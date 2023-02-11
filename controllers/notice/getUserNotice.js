@@ -4,7 +4,7 @@ const { Notice } = require('../../models');
 const getUserNotice = async (req, res) => {
   const {
     page = 1,
-    limit = 10,
+    limit = 100,
     category,
     search,
     myNotice,
@@ -70,7 +70,7 @@ const getUserNotice = async (req, res) => {
         $skip: skip,
       },
       {
-        $limit: limit,
+        $limit: Number(limit),
       },
     ],
   ];

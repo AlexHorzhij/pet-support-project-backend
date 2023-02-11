@@ -2,7 +2,7 @@ const { Notice } = require('../../models');
 const { NOTICE_CATEGORY } = require('../../consts');
 
 const getNotice = async (req, res) => {
-  const { page = 1, limit = 20, category, search } = req.query;
+  const { page = 1, limit = 100, category, search } = req.query;
   const skip = (page - 1) * limit;
   let filters = {};
 
