@@ -3,7 +3,8 @@ const ctrlWrapper = require('./ctrlWrapper');
 const sendEmail = require('./sendMail');
 const formatParcer = require('./formatParcer');
 const uploadToCloudinary = require('./uploadToCloudinary');
-const verifyEmail = require('./verifyEmail')
+const verifyEmail = require('./verifyEmail');
+const resetEmail = require('./resetEmail')
 
 module.exports = {
   handleSchemaValidationErrors,
@@ -11,5 +12,6 @@ module.exports = {
   sendEmail,
   formatParcer,
   uploadToCloudinary,
-  verifyEmail
+  verifyEmail,
+  resetEmail,
 };

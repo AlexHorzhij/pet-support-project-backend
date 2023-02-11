@@ -38,6 +38,9 @@ const userSchema = Schema(
       default: false,
       default: null,
     },
+    resetToken: {
+      type: String,
+    },
     verificationToken: {
       type: String,
       required: [true, 'Verify token is required'],
