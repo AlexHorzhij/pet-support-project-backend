@@ -46,7 +46,7 @@ router.post(
 
 router.post('/login', validateBody(loginUserSchema), ctrlWrapper(login));
 
-router.get(
+router.patch(
   '/reset/:resetToken',
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPassword)
