@@ -38,6 +38,7 @@ router.post(
 router.patch(
   '/user/:noticeId',
   authentificate,
+  upload.single('avatarUrl'),
   validateBody(updateNoticeSchema),
   ctrlWrapper(updateUserNotice)
 );
