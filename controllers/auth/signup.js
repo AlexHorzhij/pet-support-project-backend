@@ -14,6 +14,7 @@ const signup = async (req, res) => {
 
   const hashPassword = await bcrypt.hash(password, 10);
   const verificationToken = nanoid();
+  const resetToken = nanoid();
   const { file } = req;
   if (!file) {
     avatarUrl =
@@ -31,6 +32,7 @@ const signup = async (req, res) => {
     password: hashPassword,
     avatarUrl,
     verificationToken,
+    resetToken
   });
 
   const mail = verifyEmail(email, verificationToken);

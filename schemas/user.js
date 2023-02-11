@@ -43,9 +43,19 @@ const verifyEmailSchema = Joi.object({
   email: user.email,
 });
 
+const resetPasswordSchema = Joi.object({
+  password: user.password,
+});
+
+const emailSchema = Joi.object({
+  email: user.email,
+})
+
 module.exports = {
   signupUserSchema,
   loginUserSchema,
   updateUserSchema,
   verifyEmailSchema,
+  resetPasswordSchema,
+  emailSchema,
 };
