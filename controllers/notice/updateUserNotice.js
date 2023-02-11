@@ -18,13 +18,9 @@ const updateUserNotice = async (req, res) => {
     await Notice.findByIdAndUpdate(noticeId, { avatarUrl }, { new: true });
   }
 
-  const result = await Notice.findOneAndUpdate(
-    { _id: noticeId, owner: userId },
-    req.body,
-    {
-      new: true,
-    }
-  );
+  const result = await Notice.findOneAndUpdate(noticeId, req.body, {
+    new: true,
+  });
 
   if (!result) {
     throw new NotFound('Notice not found');
