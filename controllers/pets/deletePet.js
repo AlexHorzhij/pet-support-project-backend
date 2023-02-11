@@ -6,11 +6,12 @@ const deletePet = async (req, res) => {
   const result = await Pet.findByIdAndRemove(id);
 
   if (!result) {
-    throw new NotFound('Not found');
+    throw new NotFound('Pet not found');
   }
 
-  res.json({
+  res.status(200).json({
     message: 'Pet deleted',
+    result,
   });
 };
 

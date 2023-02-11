@@ -13,7 +13,7 @@ const deleteUserNotice = async (req, res) => {
     throw new NotFound('Notice not found');
   }
 
-  res.json({
+  res.status(200).json({
     message: 'notice deleted',
     result,
   });
