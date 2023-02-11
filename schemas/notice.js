@@ -1,24 +1,20 @@
 const Joi = require('joi');
 
 const notice = {
-  category: Joi.string()
-    .valid('lost/found', 'in good hands', 'sell')
-    .optional(),
-  title: Joi.string().min(2).max(48).optional(),
-  name: Joi.string().alphanum().min(2).max(16).optional(),
-  birthdate: Joi.string()
-    .pattern(
-      new RegExp(
-        '/^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$/'
-      )
+  category: Joi.string().valid('lost/found', 'in good hands', 'sell'),
+  title: Joi.string().min(2).max(48),
+  name: Joi.string().alphanum().min(2).max(16),
+  birthdate: Joi.string().pattern(
+    new RegExp(
+      '^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$'
     )
-    .optional(),
-  breed: Joi.string().min(2).max(24).optional(),
-  avatarUrl: Joi.string().optional(),
-  sex: Joi.string().valid('male', 'female').optional(),
-  location: Joi.string().min(8).max(20).optional(),
+  ),
+  breed: Joi.string().min(2).max(24),
+  avatarUrl: Joi.string(),
+  sex: Joi.string().valid('male', 'female'),
+  location: Joi.string().min(8).max(20),
   price: Joi.number().min(1).optional(),
-  comments: Joi.string().min(8).max(120).optional(),
+  comments: Joi.string().min(8).max(120),
 };
 
 const noticeSchema = Joi.object({
