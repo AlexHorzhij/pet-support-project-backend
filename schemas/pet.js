@@ -1,7 +1,10 @@
 const Joi = require('joi');
 
 const pet = {
-  name: Joi.string().alphanum().min(2).max(16).optional(),
+  name: Joi.string()
+    .min(2)
+    .max(16)
+    .pattern(new RegExp('^[a-zA-Zs,\u0400-\u04FF]*$')),
   date: Joi.string()
     .optional()
     .pattern(new RegExp('(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).(19|20)')),

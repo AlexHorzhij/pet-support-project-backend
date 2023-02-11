@@ -3,7 +3,10 @@ const Joi = require('joi');
 const notice = {
   category: Joi.string().valid('lost/found', 'in good hands', 'sell'),
   title: Joi.string().min(2).max(48),
-  name: Joi.string().alphanum().min(2).max(16),
+  name: Joi.string()
+    .min(2)
+    .max(16)
+    .pattern(new RegExp('^[a-zA-Zs,\u0400-\u04FF]*$')),
   birthdate: Joi.string().pattern(
     new RegExp(
       '^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$'
