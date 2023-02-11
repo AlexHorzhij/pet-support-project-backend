@@ -16,7 +16,7 @@ const {
   },
 } = require('../../controllers');
 
-const { createNoticeSchema, updateNoticeSchema } = require('../../schemas');
+const { noticeSchema } = require('../../schemas');
 
 router.get('/', ctrlWrapper(getNotice));
 router.get('/user', authentificate, ctrlWrapper(getUserNotice));
@@ -24,7 +24,7 @@ router.get('/user', authentificate, ctrlWrapper(getUserNotice));
 router.post(
   '/user',
   authentificate,
-  validateBody(createNoticeSchema),
+  validateBody(noticeSchema),
   upload.single('avatarUrl'),
   ctrlWrapper(addUserNotice)
 );
@@ -38,8 +38,8 @@ router.post(
 router.patch(
   '/user/:noticeId',
   authentificate,
-  validateBody(updateNoticeSchema),
-    upload.single('avatarUrl'),
+  validateBody(noticeSchema),
+  upload.single('avatarUrl'),
   ctrlWrapper(updateUserNotice)
 );
 
