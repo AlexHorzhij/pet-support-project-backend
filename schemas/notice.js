@@ -7,7 +7,11 @@ const notice = {
   title: Joi.string().min(2).max(48).optional(),
   name: Joi.string().alphanum().min(2).max(16).optional(),
   birthdate: Joi.string()
-    .pattern(new RegExp('(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).(19|20)'))
+    .pattern(
+      new RegExp(
+        '/^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$/'
+      )
+    )
     .optional(),
   breed: Joi.string().min(2).max(24).optional(),
   avatarUrl: Joi.string().optional(),
@@ -17,20 +21,7 @@ const notice = {
   comments: Joi.string().min(8).max(120).optional(),
 };
 
-const createNoticeSchema = Joi.object({
-  category: notice.category,
-  title: notice.title,
-  name: notice.name,
-  birthdate: notice.birthdate,
-  breed: notice.breed,
-  avatarUrl: notice.avatarUrl,
-  sex: notice.sex,
-  location: notice.location,
-  price: notice.price,
-  comments: notice.comments,
-}).required();
-
-const updateNoticeSchema = Joi.object({
+const noticeSchema = Joi.object({
   category: notice.category,
   title: notice.title,
   name: notice.name,
@@ -44,6 +35,5 @@ const updateNoticeSchema = Joi.object({
 }).required();
 
 module.exports = {
-  createNoticeSchema,
-  updateNoticeSchema,
+  noticeSchema,
 };
