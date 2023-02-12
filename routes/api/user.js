@@ -22,24 +22,24 @@ router.get('/', authentificate, ctrlWrapper(getUserPage));
 router.post(
   '/pets',
   authentificate,
-  validateBody(createPetSchema),
   upload.single('avatarUrl'),
+  validateBody(createPetSchema),
   ctrlWrapper(addPet)
 );
 
 router.patch(
   '/',
   authentificate,
-  validateBody(updateUserSchema),
   upload.single('avatarUrl'),
+  validateBody(updateUserSchema),
   ctrlWrapper(updateUser)
 );
 
 router.patch(
   '/pets/:id',
   authentificate,
-  validateBody(updatePetSchema),
   upload.single('avatarUrl'),
+  validateBody(updatePetSchema),
   ctrlWrapper(updatePet)
 );
 

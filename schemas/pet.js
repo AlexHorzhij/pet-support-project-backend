@@ -1,15 +1,12 @@
 const Joi = require('joi');
+const { regexName, regexDate } = require('../consts');
 
 const pet = {
-  name: Joi.string()
-    .min(2)
-    .max(16)
-    .pattern(new RegExp('^[a-zA-Zs,\u0400-\u04FF]*$')),
-  date: Joi.string()
-    .pattern(new RegExp('(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).(19|20)')),
+  name: Joi.string().min(2).max(16).pattern(new RegExp(regexName)),
+  date: Joi.string().pattern(new RegExp(regexDate)),
   breed: Joi.string().min(2).max(16),
   avatarUrl: Joi.string(),
-  description: Joi.string().min(8).max(120).optional(),
+  description: Joi.string().min(8).max(120),
 };
 
 const createPetSchema = Joi.object({

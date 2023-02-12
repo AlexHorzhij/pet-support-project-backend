@@ -1,19 +1,14 @@
 const Joi = require('joi');
+const { regexDate, regexPhone } = require('../consts');
 
 const user = {
-  name: Joi.string().optional(),
-  email: Joi.string().optional(),
-  password: Joi.string().alphanum().min(7).max(32).optional(),
-  avatarUrl: Joi.string().optional(),
-  birthdate: Joi.string()
-    .optional()
-    .pattern(new RegExp('(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).(19|20)')),
-  phone: Joi.string()
-    .optional()
-    .pattern(
-      new RegExp('^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$')
-    ),
-  city: Joi.string().optional(),
+  name: Joi.string(),
+  email: Joi.string(),
+  password: Joi.string().alphanum().min(7).max(32),
+  avatarUrl: Joi.string(),
+  birthdate: Joi.string().pattern(new RegExp(regexDate)),
+  phone: Joi.string().pattern(new RegExp(regexPhone)),
+  city: Joi.string(),
 };
 
 const signupUserSchema = Joi.object({
@@ -49,7 +44,7 @@ const resetPasswordSchema = Joi.object({
 
 const emailSchema = Joi.object({
   email: user.email,
-})
+});
 
 module.exports = {
   signupUserSchema,
