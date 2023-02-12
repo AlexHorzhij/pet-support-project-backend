@@ -169,6 +169,74 @@
         }
       }
     },
+    "/api/auth/reset":{
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Send reset email",
+        "parameters": [],
+        "requestBody": {
+          "description": "Email",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthVerify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reset email sent"
+          },
+          "400": {
+            "description": "Missing required field email"
+          },
+          "404": {
+            "description": "User not found"
+          }        
+        }
+      }
+    },
+    "/api/auth/reset/{resetToken}":{
+      "patch":{
+        "tags": ["Auth"],
+        "summary": "Reset user's password",
+        "parameters": [
+          {
+          "name": "reset token",
+          "in": "path",
+          "description": "The current token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+        ],
+        "requestBody": {
+          "description": "Password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthResetPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reset password successful"
+          },
+          "400": {
+            "description": "Missing required field password"
+          },
+          "404": {
+            "description": "User not found"
+          }        
+        }
+      }
+    },
 
     "/api/news": {
       "get": {
@@ -838,6 +906,18 @@
             "description": "User's email",
             "format": "email",
             "example": "user@mail.com"
+          }
+        }
+      },
+      "AuthResetPassword": {
+        "type": "object",
+        "required": ["password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's password",
+            "format": "password",
+            "example": "password123"
           }
         }
       },
