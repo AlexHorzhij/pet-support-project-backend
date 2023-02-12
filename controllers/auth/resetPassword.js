@@ -6,7 +6,6 @@ const { nanoid } = require('nanoid');
 const resetPassword = async (req, res) => {
   const { resetToken } = req.params;
   const userPassword = req.body.password;
-  const newResetToken = nanoid();
   const hashPassword = await bcrypt.hash(userPassword, 10);
   const user = await User.findOne({ resetToken });
   if (!user) {
@@ -15,7 +14,6 @@ const resetPassword = async (req, res) => {
 
   await User.findByIdAndUpdate(user._id, {
     password: hashPassword,
-    resetToken: newResetToken,
   });
 
   res.json({
