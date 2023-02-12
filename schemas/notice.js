@@ -1,14 +1,11 @@
 const Joi = require('joi');
+const { regexName, regexDate } = require('../consts');
 
 const notice = {
   category: Joi.string().valid('lost/found', 'in good hands', 'sell'),
   title: Joi.string().min(2).max(48),
-  name: Joi.string().min(2).max(16),
-  birthdate: Joi.string().pattern(
-    new RegExp(
-      '^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$'
-    )
-  ),
+  name: Joi.string().min(2).max(16).pattern(new RegExp(regexName)),
+  birthdate: Joi.string().pattern(new RegExp(regexDate)),
   breed: Joi.string().min(2).max(24),
   avatarUrl: Joi.string(),
   sex: Joi.string().valid('male', 'female'),
