@@ -1010,7 +1010,7 @@
           "birthdate": {
             "type": "string",
             "description": "Pat's birthdate",
-            "example": "31.12.2017"
+            "example": "12.31.2017"
           },
           "breed": {
             "type": "string",
