@@ -6,7 +6,13 @@ const uploadToCloudinary = async (fileString, format) => {
     const { uploader } = cloudinary;
 
     const res = await uploader.upload(
-      `data:avatarUrl/${format};base64,${fileString}`
+      `data:avatarUrl/${format};base64,${fileString}`,
+      {
+        transformation: [
+          { quality: 'auto', crop: 'scale' },
+          { fetch_format: 'auto' },
+        ],
+      }
     );
 
     return res;
